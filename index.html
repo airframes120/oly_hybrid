@@ -602,92 +602,128 @@
 
 
 
+#########################################           THEME          ############################################################
+
 <style>
+  :root {
+    --bg: #050505;
+    --card-bg: #0b0b0b;
+    --border: #b9903c;      /* muted gold */
+    --accent: #e3b758;      /* primary gold */
+    --text-main: #f5f5f5;
+    --text-muted: #9b9b9b;
+    --text-soft-gold: #e0c37a;
+  }
+
   /* GLOBAL */
+  * {
+    box-sizing: border-box;
+  }
+
   body {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
     margin: 0;
     padding: 1rem;
-    background: #000000; /* Deep black */
-    color: #f5d67b; /* Gold text */
+    background: radial-gradient(circle at top, #111 0, #050505 45%, #000 100%);
+    color: var(--text-main);
   }
 
   h1 {
-    font-size: 1.4rem;
-    margin-bottom: 0.75rem;
-    color: #ffcc48; /* Brighter gold for titles */
+    font-size: 1.35rem;
+    margin: 0 0 0.75rem 0;
+    color: var(--accent);
+    letter-spacing: 0.03em;
+    font-weight: 650;
   }
 
-  /* DROPDOWN + CONTROLS */
+  /* CONTROLS */
   .controls {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: 0.75rem;
     margin-bottom: 1rem;
   }
 
   label {
-    font-size: 0.9rem;
-    color: #f5d67b;
+    font-size: 0.85rem;
+    color: var(--text-soft-gold);
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
   }
 
   select {
-    padding: 0.35rem 0.5rem;
-    border-radius: 0.4rem;
-    border: 1px solid #ffcc48;
-    background: #1a1a1a; 
-    color: #ffcc48;
+    padding: 0.3rem 0.6rem;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: #050505;
+    color: var(--accent);
+    font-size: 0.85rem;
+    outline: none;
+    appearance: none;
   }
 
-  /* WORKOUT CARD */
+  select:focus {
+    border-color: var(--accent);
+  }
+
+  /* CARD */
   .card {
-    background: #0e0e0e;
-    border-radius: 0.75rem;
-    padding: 1rem;
-    border: 1px solid #ffcc48;
-    box-shadow: 0 0 12px rgba(255, 204, 72, 0.2);
+    background: var(--card-bg);
+    border-radius: 0.9rem;
+    padding: 1rem 1rem 0.75rem;
+    border: 1px solid rgba(185, 144, 60, 0.6);
   }
 
   .title {
-    font-weight: 700;
-    margin-bottom: 0.25rem;
-    color: #ffcc48;
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+    color: var(--accent);
+    font-size: 1rem;
   }
 
   .focus {
-    font-size: 0.9rem;
-    color: #d4b25e;
+    font-size: 0.8rem;
+    color: var(--text-muted);
     margin-bottom: 0.75rem;
   }
 
   /* BLOCKS */
   .block {
-    margin-bottom: 1rem;
+    padding: 0.6rem 0;
+    border-top: 1px solid rgba(185, 144, 60, 0.25);
+  }
+
+  .block:first-of-type {
+    border-top: none;
+    padding-top: 0;
   }
 
   .block-name {
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 0.9rem;
     margin-bottom: 0.25rem;
-    color: #ffcc48;
+    color: var(--text-soft-gold);
     text-transform: uppercase;
+    letter-spacing: 0.06em;
   }
 
   ul {
     margin: 0;
-    padding-left: 1rem;
-    font-size: 0.9rem;
-    color: #f5d67b;
+    padding-left: 1.1rem;
+    font-size: 0.85rem;
+    color: var(--text-main);
+    list-style-type: disc;
   }
 
   li {
-    margin-bottom: 0.2rem;
+    margin-bottom: 0.18rem;
   }
 
   /* FOOTER */
   .footer {
-    margin-top: 1rem;
-    font-size: 0.75rem;
-    color: #b89f54;
+    margin-top: 0.9rem;
+    font-size: 0.7rem;
+    color: var(--text-muted);
   }
 </style>
