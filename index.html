@@ -49,6 +49,56 @@
       color: var(--text-muted);
     }
 
+    /* TRAINING MAX PANEL */
+    .tm-panel {
+      margin: 0.9rem 0 0.9rem;
+      padding: 0.7rem 0.8rem 0.6rem;
+      border-radius: 0.85rem;
+      border: 1px solid rgba(185, 144, 60, 0.6);
+      background: rgba(10, 10, 10, 0.95);
+    }
+
+    .tm-title {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent-soft);
+      margin-bottom: 0.4rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .tm-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1rem;
+    }
+
+    .tm-field {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .tm-field label {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .tm-field input {
+      width: 90px;
+      padding: 0.25rem 0.4rem;
+      border-radius: 0.5rem;
+      border: 1px solid var(--border);
+      background: #050505;
+      color: var(--accent);
+      font-size: 0.78rem;
+      outline: none;
+    }
+
+    .tm-field input:focus {
+      border-color: var(--accent);
+    }
+
     /* TOP CONTROL BAR */
     .top-bar {
       display: flex;
@@ -149,6 +199,7 @@
       border: 1px solid rgba(185,144,60,0.7);
       font-size: 0.7rem;
       color: var(--accent-soft);
+      margin-right: 0.2rem;
     }
 
     /* WORKOUT CARD */
@@ -219,6 +270,46 @@
       margin-bottom: 0.16rem;
     }
 
+    .exercise-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .exercise-text {
+      flex: 1 1 auto;
+      min-width: 60%;
+    }
+
+    .calc-text {
+      font-size: 0.8rem;
+      color: var(--accent-soft);
+      white-space: nowrap;
+    }
+
+    .exercise-input-row {
+      margin-top: 0.15rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .exercise-input-row input {
+      width: 72px;
+      padding: 0.18rem 0.35rem;
+      border-radius: 0.5rem;
+      border: 1px solid #555;
+      background: #050505;
+      color: var(--accent);
+      font-size: 0.75rem;
+      outline: none;
+    }
+
+    .exercise-input-row input:focus {
+      border-color: var(--accent);
+    }
+
     .footer {
       margin-top: 0.9rem;
       font-size: 0.7rem;
@@ -248,9 +339,64 @@
     <header>
       <h1>Hybrid Oly Program · 12-Week Block</h1>
       <div class="subtitle">
-        4-day split · Alternating Clean &amp; Jerk / Power Snatch · RPE-based progression
+        4-day split · Alternating Clean &amp; Jerk / Power Snatch · RPE + % based progression
       </div>
     </header>
+
+    <!-- TRAINING MAX PANEL -->
+    <div class="tm-panel">
+      <div class="tm-title">Training Maxes (lb)</div>
+      <div class="tm-grid">
+        <div class="tm-field">
+          <label>
+            Clean &amp; Jerk
+            <input id="tm_cj" type="number" inputmode="decimal"
+              placeholder="205"
+              onchange="updateTrainingMax('cj', this.value)" />
+          </label>
+        </div>
+        <div class="tm-field">
+          <label>
+            Snatch / Power Snatch
+            <input id="tm_sn" type="number" inputmode="decimal"
+              placeholder="115"
+              onchange="updateTrainingMax('sn', this.value)" />
+          </label>
+        </div>
+        <div class="tm-field">
+          <label>
+            Back Squat
+            <input id="tm_bsq" type="number" inputmode="decimal"
+              placeholder="245"
+              onchange="updateTrainingMax('bsq', this.value)" />
+          </label>
+        </div>
+        <div class="tm-field">
+          <label>
+            Front Squat
+            <input id="tm_fsq" type="number" inputmode="decimal"
+              placeholder="225"
+              onchange="updateTrainingMax('fsq', this.value)" />
+          </label>
+        </div>
+        <div class="tm-field">
+          <label>
+            Bench Press
+            <input id="tm_bench" type="number" inputmode="decimal"
+              placeholder="—"
+              onchange="updateTrainingMax('bench', this.value)" />
+          </label>
+        </div>
+        <div class="tm-field">
+          <label>
+            Push Press / OHP
+            <input id="tm_pp" type="number" inputmode="decimal"
+              placeholder="—"
+              onchange="updateTrainingMax('pp', this.value)" />
+          </label>
+        </div>
+      </div>
+    </div>
 
     <!-- TOP CONTROLS -->
     <div class="top-bar">
@@ -310,11 +456,69 @@
     </div>
 
     <div class="footer">
-      Data is stored locally on this device (via localStorage). If you clear browser data, your bookmark will reset.
+      Training maxes + “Used” weights are stored locally on this device (via localStorage). Clearing browser data will reset them.
     </div>
   </div>
 
   <script>
+    // -------------------------
+    // TRAINING MAX STORAGE
+    // -------------------------
+
+    const TRAINING_MAX_KEY = "olyTrainingMaxes";
+    let trainingMaxes = {
+      cj: 205,
+      sn: 115,
+      bsq: 245,
+      fsq: 225,
+      bench: "",
+      pp: ""
+    };
+
+    function loadTrainingMaxes() {
+      try {
+        const raw = localStorage.getItem(TRAINING_MAX_KEY);
+        if (raw) {
+          const stored = JSON.parse(raw);
+          trainingMaxes = { ...trainingMaxes, ...stored };
+        }
+      } catch (e) {
+        // ignore
+      }
+    }
+
+    function saveTrainingMaxes() {
+      localStorage.setItem(TRAINING_MAX_KEY, JSON.stringify(trainingMaxes));
+    }
+
+    function initTrainingMaxInputs() {
+      const mapping = {
+        cj: "tm_cj",
+        sn: "tm_sn",
+        bsq: "tm_bsq",
+        fsq: "tm_fsq",
+        bench: "tm_bench",
+        pp: "tm_pp"
+      };
+      for (const key in mapping) {
+        const el = document.getElementById(mapping[key]);
+        if (!el) continue;
+        const val = trainingMaxes[key];
+        el.value = val !== "" && val !== undefined && val !== null ? val : "";
+      }
+    }
+
+    function updateTrainingMax(key, value) {
+      const num = parseFloat(value);
+      if (!isNaN(num)) {
+        trainingMaxes[key] = num;
+      } else {
+        trainingMaxes[key] = "";
+      }
+      saveTrainingMaxes();
+      renderWorkout();
+    }
+
     // -------------------------
     // PROGRAM DATA (12 WEEKS)
     // -------------------------
@@ -329,8 +533,8 @@
             {
               name: "Olympic Lift",
               items: [
-                "Clean & Jerk · 6×1 @ 60–70% (205 → 125,125,135,145,145,145 lb) · RPE 6–7",
-                "Clean Pull · 3×3 @ ~90% (≈185 lb) · RPE 7"
+                "Clean & Jerk · 6×1 @ 60–70% · RPE 6–7",
+                "Clean Pull · 3×3 @ ~90% · RPE 7"
               ]
             },
             {
@@ -418,8 +622,8 @@
             {
               name: "Clean Technique",
               items: [
-                "Hang Clean · 4×2 @ 40–55% (≈85–105 lb) · RPE 4–5",
-                "Clean Pull Pops · 2×5 (empty bar or 95 lb, speed only)"
+                "Hang Clean · 4×2 @ 40–55% · RPE 4–5",
+                "Clean Pull Pops · 2×5 (empty bar or 95 lb)"
               ]
             },
             {
@@ -448,9 +652,9 @@
             {
               name: "Olympic Lift",
               items: [
-                "Power Snatch · 6×2 @ 60–70% (115 → ~70–80 lb) · RPE 6–7",
-                "Snatch Pull · 3×3 @ ~90% (~105 lb)",
-                "Overhead Squat · 3×3 @ ~65% (~75 lb, position focus)"
+                "Power Snatch · 6×2 @ 60–70% · RPE 6–7",
+                "Snatch Pull · 3×3 @ ~90%",
+                "Overhead Squat · 3×3 @ ~65% (position focus)"
               ]
             },
             {
@@ -484,7 +688,7 @@
               name: "Push",
               items: [
                 "Bench Press · 4×6 @ RPE 7",
-                "Push Press test: 135×3 → if pain-free → 3×3 @ RPE 6 (135–145 lb)",
+                "Push Press test: 135×3 → if pain-free → 3×3 @ RPE 6",
                 "If painful → Landmine Press 4×8 @ RPE 6–7 instead",
                 "Incline DB Press · 3×8 @ RPE 8",
                 "Dips · 3×10 @ RPE 7"
@@ -505,7 +709,7 @@
             {
               name: "Strength",
               items: [
-                "Pause Front Squat · 4×3 @ RPE 6–7 (~165–175 lb, 2–3s pause)",
+                "Pause Front Squat · 4×3 @ RPE 6–7 (2–3s pause)",
                 "Hamstring Curl · 4×10 @ RPE 7",
                 "Hip Thrust · 4×8 @ RPE 8"
               ]
@@ -532,9 +736,9 @@
             {
               name: "Snatch Technique",
               items: [
-                "Hang Power Snatch · 4×2 @ 40–55% (~55–65 lb)",
-                "Snatch Balance · 3×2 @ 45–65 lb",
-                "Snatch Push Press · 3×5 @ 45–65 lb"
+                "Hang Power Snatch · 4×2 @ 40–55%",
+                "Snatch Balance · 3×2",
+                "Snatch Push Press · 3×5"
               ]
             },
             {
@@ -563,8 +767,8 @@
             {
               name: "Olympic Lift",
               items: [
-                "Clean & Jerk · 6×1 @ 65–75% (135,135,145,155,155,160 lb) · RPE 6–7.5",
-                "Clean Pull · 3×3 @ 90–95% (~185–195 lb)"
+                "Clean & Jerk · 6×1 @ 65–75% · RPE 6–7.5",
+                "Clean Pull · 3×3 @ 90–95%"
               ]
             },
             {
@@ -651,7 +855,7 @@
             {
               name: "Clean Technique",
               items: [
-                "Hang Clean · 4×2 @ 50–60% (≈105–125 lb)",
+                "Hang Clean · 4×2 @ 50–60%",
                 "Clean Pull Pops · 2×5"
               ]
             },
@@ -659,7 +863,7 @@
               name: "Pull Strength",
               items: [
                 "Weighted Pull-Ups · 4×6 @ RPE 7–8",
-                "Pendlay Row · 4×6 @ RPE 7–8 (~145–165 lb)",
+                "Pendlay Row · 4×6 @ RPE 7–8",
                 "Reverse Fly · 3×12"
               ]
             },
@@ -681,9 +885,9 @@
             {
               name: "Olympic Lift",
               items: [
-                "Power Snatch · 6×2 @ 65–75% (~75–85 lb) · RPE 7",
-                "Snatch Pull · 3×3 @ ~95% (~110 lb)",
-                "Overhead Squat · 3×3 @ ~70% (~80 lb)"
+                "Power Snatch · 6×2 @ 65–75% · RPE 7",
+                "Snatch Pull · 3×3 @ ~95%",
+                "Overhead Squat · 3×3 @ ~70%"
               ]
             },
             {
@@ -764,9 +968,9 @@
             {
               name: "Snatch Technique",
               items: [
-                "Hang Power Snatch · 4×2 @ 50–60% (≈60–70 lb)",
-                "Snatch Balance · 3×2 @ 55–75 lb",
-                "Snatch Push Press · 3×5 @ 55–75 lb"
+                "Hang Power Snatch · 4×2 @ 50–60%",
+                "Snatch Balance · 3×2",
+                "Snatch Push Press · 3×5"
               ]
             },
             {
@@ -788,7 +992,6 @@
       },
 
       // BLOCK 2 · INTENSIFICATION (Weeks 5–8)
-      // Weeks 5–8 repeat the same weekly structure with slightly higher intensity, slightly lower reps where noted.
 
       5: { // Week 5 – C&J Intensification
         1: {
@@ -798,8 +1001,8 @@
             {
               name: "Olympic Lift",
               items: [
-                "Clean & Jerk · 5×1 @ 70–80% (heavier singles, RPE 7–8)",
-                "Clean Pull · 3×3 @ 95% (heavy but snappy)"
+                "Clean & Jerk · 5×1 @ 70–80% · RPE 7–8",
+                "Clean Pull · 3×3 @ 95%"
               ]
             },
             {
@@ -880,7 +1083,7 @@
             {
               name: "Clean Technique",
               items: [
-                "Hang Clean · 3×2 @ 70% focus speed under",
+                "Hang Clean · 3×2 @ ~70%",
                 "Light Clean Pull Pops · 2×5"
               ]
             },
@@ -910,7 +1113,7 @@
             {
               name: "Olympic Lift",
               items: [
-                "Power Snatch · 5×2 @ 70–80% (RPE 7–8)",
+                "Power Snatch · 5×2 @ 70–80% · RPE 7–8",
                 "Snatch Pull · 3×3 @ 95%",
                 "Overhead Squat · 3×2 @ ~75–80%"
               ]
@@ -981,12 +1184,12 @@
         },
         4: {
           title: "Week 6 Day 4 – Upper Pull + Snatch Tech (Intensify)",
-          focus: "Snatch skill + pulling strength",
+          focus: "Snatch skill · pulling strength",
           blocks: [
             {
               name: "Snatch Technique",
               items: [
-                "Hang Power Snatch · 3×2 @ 70% (tech focus)",
+                "Hang Power Snatch · 3×2 @ 70%",
                 "Snatch Balance · 3×2 moderate",
                 "Snatch Push Press · 3×5 moderate"
               ]
@@ -1017,7 +1220,7 @@
             {
               name: "Olympic Lift",
               items: [
-                "Clean & Jerk · 4×1 @ 75–85% (RPE 7.5–8)",
+                "Clean & Jerk · 4×1 @ 75–85% · RPE 7.5–8",
                 "Clean Pull · 3×2 @ 95–100%"
               ]
             },
@@ -1093,9 +1296,9 @@
             {
               name: "Olympic Lift",
               items: [
-                "Power Snatch · 4×2 @ 75–85% (RPE 7.5–8)",
+                "Power Snatch · 4×2 @ 75–85% · RPE 7.5–8",
                 "Snatch Pull · 3×2 @ 95–100%",
-                "OHS · 2–3×2 light–moderate for position"
+                "Overhead Squat · 2–3×2 light–moderate"
               ]
             },
             {
@@ -1164,7 +1367,7 @@
             {
               name: "Olympic Lift",
               items: [
-                "Clean & Jerk · work to heavy but crisp single @ ~85–90% (no misses)",
+                "Clean & Jerk · work to heavy single @ ~85–90% (no misses)",
                 "Clean Pull · 2–3×2 @ 95–100%"
               ]
             },
@@ -1391,85 +1594,111 @@
     };
 
     // -------------------------
-    // RENDER LOGIC
+    // PROGRESSION CONFIG (AUTO-CALC SUGGESTED LOADS)
+    // key = week-day-blockIndex-itemIndex
     // -------------------------
 
-    const weekSelect = document.getElementById("weekSelect");
-    const daySelect  = document.getElementById("daySelect");
-    const workoutCard = document.getElementById("workoutCard");
+    const progressionConfig = {
+      // Week 1 C&J
+      "1-1-0-0": { maxKey: "cj", minPct: 0.6, maxPct: 0.7 },
+      "1-1-0-1": { maxKey: "cj", minPct: 0.9, maxPct: 0.9 },
 
-    const prevDayBtn = document.getElementById("prevDayBtn");
-    const nextDayBtn = document.getElementById("nextDayBtn");
+      // Week 2 PSn
+      "2-1-0-0": { maxKey: "sn", minPct: 0.6, maxPct: 0.7 },
+      "2-1-0-1": { maxKey: "sn", minPct: 0.9, maxPct: 0.9 },
+      "2-1-0-2": { maxKey: "sn", minPct: 0.65, maxPct: 0.65 },
 
-    const saveBookmarkBtn = document.getElementById("saveBookmarkBtn");
-    const gotoBookmarkBtn = document.getElementById("gotoBookmarkBtn");
-    const bookmarkDisplay = document.getElementById("bookmarkDisplay");
+      // Week 3 C&J
+      "3-1-0-0": { maxKey: "cj", minPct: 0.65, maxPct: 0.75 },
+      "3-1-0-1": { maxKey: "cj", minPct: 0.9, maxPct: 0.95 },
+
+      // Week 4 PSn
+      "4-1-0-0": { maxKey: "sn", minPct: 0.65, maxPct: 0.75 },
+      "4-1-0-1": { maxKey: "sn", minPct: 0.95, maxPct: 0.95 },
+      "4-1-0-2": { maxKey: "sn", minPct: 0.7, maxPct: 0.7 },
+
+      // Week 5 C&J intensify
+      "5-1-0-0": { maxKey: "cj", minPct: 0.7, maxPct: 0.8 },
+      "5-1-0-1": { maxKey: "cj", minPct: 0.95, maxPct: 0.95 },
+
+      // Week 6 PSn intensify
+      "6-1-0-0": { maxKey: "sn", minPct: 0.7, maxPct: 0.8 },
+      "6-1-0-1": { maxKey: "sn", minPct: 0.95, maxPct: 0.95 },
+      "6-1-0-2": { maxKey: "sn", minPct: 0.75, maxPct: 0.8 },
+
+      // Week 7 C&J intensify+
+      "7-1-0-0": { maxKey: "cj", minPct: 0.75, maxPct: 0.85 },
+      "7-1-0-1": { maxKey: "cj", minPct: 0.95, maxPct: 1.0 },
+
+      // Week 8 PSn intensify+
+      "8-1-0-0": { maxKey: "sn", minPct: 0.75, maxPct: 0.85 },
+      "8-1-0-1": { maxKey: "sn", minPct: 0.95, maxPct: 1.0 },
+
+      // Week 9 C&J peak
+      "9-1-0-0": { maxKey: "cj", minPct: 0.85, maxPct: 0.9 },
+      "9-1-0-1": { maxKey: "cj", minPct: 0.95, maxPct: 1.0 },
+
+      // Week 10 Snatch peak
+      "10-1-0-0": { maxKey: "sn", minPct: 0.85, maxPct: 0.9 },
+      "10-1-0-1": { maxKey: "sn", minPct: 0.95, maxPct: 0.95 },
+
+      // Week 11 C&J taper
+      "11-1-0-0": { maxKey: "cj", minPct: 0.7, maxPct: 0.8 },
+
+      // Week 12 Snatch taper
+      "12-1-0-0": { maxKey: "sn", minPct: 0.7, maxPct: 0.8 }
+    };
+
+    function roundToNearest5(x) {
+      return Math.round(x / 5) * 5;
+    }
+
+    function getSuggestionFor(key) {
+      const cfg = progressionConfig[key];
+      if (!cfg) return "";
+      const tm = trainingMaxes[cfg.maxKey];
+      if (!tm || isNaN(tm)) return "";
+      let min = null;
+      let max = null;
+      if (cfg.pct) {
+        min = max = roundToNearest5(tm * cfg.pct);
+      } else {
+        if (cfg.minPct) min = roundToNearest5(tm * cfg.minPct);
+        if (cfg.maxPct) max = roundToNearest5(tm * cfg.maxPct);
+      }
+      if (min && max && Math.abs(max - min) >= 5) {
+        return `Suggested: ${min}–${max} lb`;
+      }
+      const val = max || min;
+      if (!val) return "";
+      return `Suggested: ${val} lb`;
+    }
+
+    // -------------------------
+    // BOOKMARK + LOG STORAGE
+    // -------------------------
 
     const BOOKMARK_KEY = "olyProgramLastWorkout";
+    const LOG_PREFIX = "olyLog_";
 
-    function renderWorkout() {
-      const week = parseInt(weekSelect.value, 10);
-      const day = parseInt(daySelect.value, 10);
-
-      const weekData = program[week];
-      if (!weekData || !weekData[day]) {
-        workoutCard.innerHTML = "<div>Workout not defined for this day.</div>";
-        return;
+    function saveLog(key, value) {
+      if (!key) return;
+      if (value === "") {
+        localStorage.removeItem(LOG_PREFIX + key);
+      } else {
+        localStorage.setItem(LOG_PREFIX + key, value);
       }
-
-      const data = weekData[day];
-      let html = "";
-
-      html += `<div class="title">${data.title}</div>`;
-      html += `<div class="meta-row">`;
-      html += `<div class="focus">${data.focus}</div>`;
-      html += `<div class="week-tag">Week ${week} · Day ${day}</div>`;
-      html += `</div>`;
-
-      data.blocks.forEach(block => {
-        html += `<div class="block">`;
-        html += `<div class="block-name">${block.name}</div>`;
-        html += `<ul>`;
-        block.items.forEach(item => {
-          html += `<li>${item}</li>`;
-        });
-        html += `</ul></div>`;
-      });
-
-      workoutCard.innerHTML = html;
     }
 
-    function changeDay(delta) {
-      let week = parseInt(weekSelect.value, 10);
-      let day  = parseInt(daySelect.value, 10);
-
-      day += delta;
-
-      if (day < 1) {
-        if (week > 1) {
-          week -= 1;
-          day = 4;
-        } else {
-          day = 1;
-        }
-      } else if (day > 4) {
-        if (week < 12) {
-          week += 1;
-          day = 1;
-        } else {
-          day = 4;
-        }
-      }
-
-      weekSelect.value = String(week);
-      daySelect.value  = String(day);
-      renderWorkout();
+    function getLog(key) {
+      if (!key) return "";
+      const val = localStorage.getItem(LOG_PREFIX + key);
+      return val || "";
     }
 
-    // BOOKMARK FUNCTIONS
     function saveBookmark() {
       const week = parseInt(weekSelect.value, 10);
-      const day  = parseInt(daySelect.value, 10);
+      const day = parseInt(daySelect.value, 10);
       const data = { week, day };
       localStorage.setItem(BOOKMARK_KEY, JSON.stringify(data));
       updateBookmarkDisplay();
@@ -1502,7 +1731,98 @@
       if (!bm) return;
       if (!program[bm.week] || !program[bm.week][bm.day]) return;
       weekSelect.value = String(bm.week);
-      daySelect.value  = String(bm.day);
+      daySelect.value = String(bm.day);
+      renderWorkout();
+    }
+
+    // -------------------------
+    // RENDER LOGIC
+    // -------------------------
+
+    const weekSelect = document.getElementById("weekSelect");
+    const daySelect = document.getElementById("daySelect");
+    const workoutCard = document.getElementById("workoutCard");
+
+    const prevDayBtn = document.getElementById("prevDayBtn");
+    const nextDayBtn = document.getElementById("nextDayBtn");
+
+    const saveBookmarkBtn = document.getElementById("saveBookmarkBtn");
+    const gotoBookmarkBtn = document.getElementById("gotoBookmarkBtn");
+    const bookmarkDisplay = document.getElementById("bookmarkDisplay");
+
+    function renderWorkout() {
+      const week = parseInt(weekSelect.value, 10);
+      const day = parseInt(daySelect.value, 10);
+
+      const weekData = program[week];
+      if (!weekData || !weekData[day]) {
+        workoutCard.innerHTML = "<div>Workout not defined for this day.</div>";
+        return;
+      }
+
+      const data = weekData[day];
+      let html = "";
+
+      html += `<div class="title">${data.title}</div>`;
+      html += `<div class="meta-row">`;
+      html += `<div class="focus">${data.focus}</div>`;
+      html += `<div class="week-tag">Week ${week} · Day ${day}</div>`;
+      html += `</div>`;
+
+      data.blocks.forEach((block, bIndex) => {
+        html += `<div class="block">`;
+        html += `<div class="block-name">${block.name}</div>`;
+        html += `<ul>`;
+        block.items.forEach((item, iIndex) => {
+          const key = `${week}-${day}-${bIndex}-${iIndex}`;
+          const suggestion = getSuggestionFor(key);
+          const logKey = key; // same structure for storage
+          const savedVal = getLog(logKey);
+
+          if (suggestion) {
+            html += `<li>`;
+            html += `<div class="exercise-line">`;
+            html += `<span class="exercise-text">${item}</span>`;
+            html += `<span class="calc-text">${suggestion}</span>`;
+            html += `</div>`;
+            html += `<div class="exercise-input-row">`;
+            html += `Used (lb): <input type="number" inputmode="decimal" value="${savedVal}" onchange="saveLog('${logKey}', this.value)" />`;
+            html += `</div>`;
+            html += `</li>`;
+          } else {
+            html += `<li>${item}</li>`;
+          }
+        });
+        html += `</ul></div>`;
+      });
+
+      workoutCard.innerHTML = html;
+    }
+
+    function changeDay(delta) {
+      let week = parseInt(weekSelect.value, 10);
+      let day = parseInt(daySelect.value, 10);
+
+      day += delta;
+
+      if (day < 1) {
+        if (week > 1) {
+          week -= 1;
+          day = 4;
+        } else {
+          day = 1;
+        }
+      } else if (day > 4) {
+        if (week < 12) {
+          week += 1;
+          day = 1;
+        } else {
+          day = 4;
+        }
+      }
+
+      weekSelect.value = String(week);
+      daySelect.value = String(day);
       renderWorkout();
     }
 
@@ -1517,6 +1837,8 @@
     gotoBookmarkBtn.addEventListener("click", gotoBookmark);
 
     // INIT
+    loadTrainingMaxes();
+    initTrainingMaxInputs();
     updateBookmarkDisplay();
     renderWorkout();
   </script>
