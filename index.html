@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Hybrid Oly Program – 12 Week Block</title>
+  <title>Hybrid Oly + Hypertrophy – 12 Weeks</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root {
@@ -15,9 +15,7 @@
       --text-muted: #9b9b9b;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
@@ -27,15 +25,9 @@
       color: var(--text-main);
     }
 
-    .app {
-      max-width: 780px;
-      margin: 0 auto;
-    }
+    .app { max-width: 860px; margin: 0 auto; }
 
-    header {
-      margin-bottom: 0.75rem;
-    }
-
+    header { margin-bottom: 0.75rem; }
     h1 {
       font-size: 1.35rem;
       margin: 0 0 0.2rem;
@@ -43,21 +35,31 @@
       letter-spacing: 0.04em;
       font-weight: 650;
     }
-
     .subtitle {
-      font-size: 0.8rem;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.35;
+    }
+
+    .info {
+      margin-top: 0.75rem;
+      padding: 0.65rem 0.8rem;
+      border-radius: 0.85rem;
+      border: 1px solid rgba(185,144,60,0.55);
+      background: rgba(10,10,10,0.95);
+      font-size: 0.78rem;
       color: var(--text-muted);
     }
+    .info b { color: var(--accent-soft); font-weight: 600; }
 
     /* TRAINING MAX PANEL */
     .tm-panel {
-      margin: 0.9rem 0 0.9rem;
+      margin: 0.9rem 0 0.85rem;
       padding: 0.7rem 0.8rem 0.6rem;
       border-radius: 0.85rem;
       border: 1px solid rgba(185, 144, 60, 0.6);
       background: rgba(10, 10, 10, 0.95);
     }
-
     .tm-title {
       font-size: 0.8rem;
       font-weight: 600;
@@ -66,38 +68,31 @@
       text-transform: uppercase;
       letter-spacing: 0.08em;
     }
-
     .tm-grid {
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem 1rem;
     }
-
     .tm-field {
       font-size: 0.78rem;
       color: var(--text-muted);
     }
-
     .tm-field label {
       display: flex;
       flex-direction: column;
       gap: 0.2rem;
     }
-
     .tm-field input {
-      width: 90px;
-      padding: 0.25rem 0.4rem;
-      border-radius: 0.5rem;
+      width: 110px;
+      padding: 0.25rem 0.45rem;
+      border-radius: 0.55rem;
       border: 1px solid var(--border);
       background: #050505;
       color: var(--accent);
       font-size: 0.78rem;
       outline: none;
     }
-
-    .tm-field input:focus {
-      border-color: var(--accent);
-    }
+    .tm-field input:focus { border-color: var(--accent); }
 
     /* TOP CONTROL BAR */
     .top-bar {
@@ -107,13 +102,11 @@
       margin: 0.9rem 0 0.8rem;
       align-items: center;
     }
-
     .controls {
       display: flex;
       flex-wrap: wrap;
       gap: 0.6rem;
     }
-
     label {
       font-size: 0.8rem;
       color: var(--accent-soft);
@@ -121,9 +114,8 @@
       align-items: center;
       gap: 0.25rem;
     }
-
     select {
-      padding: 0.28rem 0.6rem;
+      padding: 0.28rem 0.65rem;
       border-radius: 999px;
       border: 1px solid var(--border);
       background: #050505;
@@ -132,17 +124,13 @@
       outline: none;
       appearance: none;
     }
-
-    select:focus {
-      border-color: var(--accent);
-    }
+    select:focus { border-color: var(--accent); }
 
     .nav-buttons {
       display: flex;
       gap: 0.4rem;
       margin-left: auto;
     }
-
     .btn {
       border-radius: 999px;
       border: 1px solid var(--border);
@@ -152,49 +140,27 @@
       padding: 0.28rem 0.75rem;
       cursor: pointer;
     }
-
-    .btn:hover {
-      background: #111111;
-    }
-
-    .btn-ghost {
-      border-color: #444;
-      color: var(--text-muted);
-    }
+    .btn:hover { background: #111111; }
+    .btn-ghost { border-color: #444; color: var(--text-muted); }
 
     /* BOOKMARK BAR */
     .bookmark-bar {
-      border-radius: 0.8rem;
+      border-radius: 0.85rem;
       border: 1px solid rgba(185,144,60,0.6);
       background: rgba(10,10,10,0.95);
-      padding: 0.5rem 0.7rem;
+      padding: 0.55rem 0.75rem;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       gap: 0.45rem;
       margin-bottom: 0.85rem;
     }
-
-    .bookmark-label {
-      font-size: 0.78rem;
-      color: var(--accent-soft);
-      font-weight: 500;
-    }
-
-    .bookmark-value {
-      font-size: 0.78rem;
-      color: var(--text-main);
-    }
-
-    .bookmark-buttons {
-      display: flex;
-      gap: 0.4rem;
-      margin-left: auto;
-    }
-
+    .bookmark-label { font-size: 0.78rem; color: var(--accent-soft); font-weight: 500; }
+    .bookmark-value { font-size: 0.78rem; color: var(--text-main); }
+    .bookmark-buttons { display: flex; gap: 0.4rem; margin-left: auto; }
     .badge {
       display: inline-block;
-      padding: 0.1rem 0.45rem;
+      padding: 0.1rem 0.48rem;
       border-radius: 999px;
       border: 1px solid rgba(185,144,60,0.7);
       font-size: 0.7rem;
@@ -205,34 +171,27 @@
     /* WORKOUT CARD */
     .card {
       background: var(--bg-soft);
-      border-radius: 0.9rem;
-      padding: 1rem 1rem 0.8rem;
+      border-radius: 0.95rem;
+      padding: 1rem 1rem 0.85rem;
       border: 1px solid rgba(185,144,60,0.65);
     }
-
     .title {
-      font-weight: 600;
+      font-weight: 650;
       margin-bottom: 0.15rem;
       color: var(--accent);
-      font-size: 0.98rem;
+      font-size: 1.0rem;
     }
-
     .meta-row {
       display: flex;
       flex-wrap: wrap;
       gap: 0.35rem;
       align-items: center;
-      margin-bottom: 0.55rem;
+      margin-bottom: 0.65rem;
     }
-
-    .focus {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-
+    .focus { font-size: 0.8rem; color: var(--text-muted); }
     .week-tag {
       font-size: 0.73rem;
-      padding: 0.15rem 0.45rem;
+      padding: 0.15rem 0.5rem;
       border-radius: 999px;
       border: 1px solid rgba(185,144,60,0.6);
       color: var(--accent-soft);
@@ -240,64 +199,53 @@
 
     /* BLOCKS */
     .block {
-      padding: 0.55rem 0;
+      padding: 0.6rem 0;
       border-top: 1px solid rgba(185, 144, 60, 0.25);
     }
-
-    .block:first-of-type {
-      border-top: none;
-      padding-top: 0;
-    }
-
+    .block:first-of-type { border-top: none; padding-top: 0; }
     .block-name {
-      font-weight: 600;
+      font-weight: 650;
       font-size: 0.86rem;
-      margin-bottom: 0.22rem;
+      margin-bottom: 0.25rem;
       color: var(--accent-soft);
       text-transform: uppercase;
       letter-spacing: 0.06em;
     }
-
     ul {
       margin: 0;
       padding-left: 1.1rem;
-      font-size: 0.83rem;
+      font-size: 0.84rem;
       color: var(--text-main);
       list-style-type: disc;
     }
-
-    li {
-      margin-bottom: 0.16rem;
-    }
+    li { margin-bottom: 0.2rem; }
 
     .exercise-line {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      gap: 0.5rem;
+      gap: 0.6rem;
       flex-wrap: wrap;
     }
-
-    .exercise-text {
-      flex: 1 1 auto;
-      min-width: 60%;
-    }
-
+    .exercise-text { flex: 1 1 auto; min-width: 58%; }
     .calc-text {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: var(--accent-soft);
       white-space: nowrap;
     }
 
     .exercise-input-row {
-      margin-top: 0.15rem;
-      font-size: 0.75rem;
+      margin-top: 0.2rem;
+      font-size: 0.74rem;
       color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
     }
-
     .exercise-input-row input {
-      width: 72px;
-      padding: 0.18rem 0.35rem;
+      width: 78px;
+      padding: 0.18rem 0.4rem;
       border-radius: 0.5rem;
       border: 1px solid #555;
       background: #050505;
@@ -305,9 +253,10 @@
       font-size: 0.75rem;
       outline: none;
     }
-
-    .exercise-input-row input:focus {
-      border-color: var(--accent);
+    .exercise-input-row input:focus { border-color: var(--accent); }
+    .mini {
+      font-size: 0.72rem;
+      color: var(--text-muted);
     }
 
     .footer {
@@ -316,30 +265,28 @@
       color: var(--text-muted);
     }
 
-    @media (max-width: 600px) {
-      .top-bar {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .nav-buttons {
-        margin-left: 0;
-      }
-      .bookmark-bar {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .bookmark-buttons {
-        margin-left: 0;
-      }
+    @media (max-width: 650px) {
+      .top-bar { flex-direction: column; align-items: flex-start; }
+      .nav-buttons { margin-left: 0; }
+      .bookmark-bar { flex-direction: column; align-items: flex-start; }
+      .bookmark-buttons { margin-left: 0; }
+      .tm-field input { width: 100px; }
     }
   </style>
 </head>
+
 <body>
   <div class="app">
     <header>
-      <h1>Hybrid Oly Program · 12-Week Block</h1>
+      <h1>Hybrid Oly + Hypertrophy · 12 Weeks</h1>
       <div class="subtitle">
-        4-day split · Alternating Clean &amp; Jerk / Power Snatch · RPE + % based progression
+        4-day split · Odd weeks = C&amp;J emphasis · Even weeks = Snatch emphasis ·
+        Hypertrophy volume baked in (push/pull/legs).
+      </div>
+
+      <div class="info">
+        <b>Volume concept:</b> Weeks 1–8 aim for ~20–25 “hard sets” per major muscle group/week (distributed across Days 1–4).
+        Weeks 9–10 reduce volume to stay explosive (peak), Weeks 11–12 taper further for freshness.
       </div>
     </header>
 
@@ -348,51 +295,33 @@
       <div class="tm-title">Training Maxes (lb)</div>
       <div class="tm-grid">
         <div class="tm-field">
-          <label>
-            Clean &amp; Jerk
-            <input id="tm_cj" type="number" inputmode="decimal"
-              placeholder="205"
-              onchange="updateTrainingMax('cj', this.value)" />
+          <label>C&amp;J TM
+            <input id="tm_cj" type="number" inputmode="decimal" placeholder="205" />
           </label>
         </div>
         <div class="tm-field">
-          <label>
-            Snatch / Power Snatch
-            <input id="tm_sn" type="number" inputmode="decimal"
-              placeholder="115"
-              onchange="updateTrainingMax('sn', this.value)" />
+          <label>Snatch TM
+            <input id="tm_sn" type="number" inputmode="decimal" placeholder="115" />
           </label>
         </div>
         <div class="tm-field">
-          <label>
-            Back Squat
-            <input id="tm_bsq" type="number" inputmode="decimal"
-              placeholder="245"
-              onchange="updateTrainingMax('bsq', this.value)" />
+          <label>Back Squat TM
+            <input id="tm_bsq" type="number" inputmode="decimal" placeholder="245" />
           </label>
         </div>
         <div class="tm-field">
-          <label>
-            Front Squat
-            <input id="tm_fsq" type="number" inputmode="decimal"
-              placeholder="225"
-              onchange="updateTrainingMax('fsq', this.value)" />
+          <label>Front Squat TM
+            <input id="tm_fsq" type="number" inputmode="decimal" placeholder="225" />
           </label>
         </div>
         <div class="tm-field">
-          <label>
-            Bench Press
-            <input id="tm_bench" type="number" inputmode="decimal"
-              placeholder="—"
-              onchange="updateTrainingMax('bench', this.value)" />
+          <label>Bench TM
+            <input id="tm_bench" type="number" inputmode="decimal" placeholder="(optional)" />
           </label>
         </div>
         <div class="tm-field">
-          <label>
-            Push Press / OHP
-            <input id="tm_pp" type="number" inputmode="decimal"
-              placeholder="—"
-              onchange="updateTrainingMax('pp', this.value)" />
+          <label>Push Press/OHP TM
+            <input id="tm_pp" type="number" inputmode="decimal" placeholder="(optional)" />
           </label>
         </div>
       </div>
@@ -401,26 +330,10 @@
     <!-- TOP CONTROLS -->
     <div class="top-bar">
       <div class="controls">
-        <label>
-          Week
-          <select id="weekSelect">
-            <option value="1">1 (C&J · Base)</option>
-            <option value="2">2 (Snatch · Base)</option>
-            <option value="3">3 (C&J · Base+)</option>
-            <option value="4">4 (Snatch · Base+)</option>
-            <option value="5">5 (C&J · Intensify)</option>
-            <option value="6">6 (Snatch · Intensify)</option>
-            <option value="7">7 (C&J · Intensify+)</option>
-            <option value="8">8 (Snatch · Intensify+)</option>
-            <option value="9">9 (C&J · Peak)</option>
-            <option value="10">10 (Snatch · Peak)</option>
-            <option value="11">11 (Taper · C&J)</option>
-            <option value="12">12 (Taper · Snatch)</option>
-          </select>
+        <label>Week
+          <select id="weekSelect"></select>
         </label>
-
-        <label>
-          Day
+        <label>Day
           <select id="daySelect">
             <option value="1">Day 1</option>
             <option value="2">Day 2</option>
@@ -429,7 +342,6 @@
           </select>
         </label>
       </div>
-
       <div class="nav-buttons">
         <button class="btn btn-ghost" id="prevDayBtn">‹ Prev</button>
         <button class="btn" id="nextDayBtn">Next ›</button>
@@ -440,9 +352,7 @@
     <div class="bookmark-bar">
       <div>
         <div class="bookmark-label">Last bookmarked workout:</div>
-        <div class="bookmark-value" id="bookmarkDisplay">
-          None saved yet
-        </div>
+        <div class="bookmark-value" id="bookmarkDisplay">None saved yet</div>
       </div>
       <div class="bookmark-buttons">
         <button class="btn btn-ghost" id="saveBookmarkBtn">Save current</button>
@@ -451,21 +361,25 @@
     </div>
 
     <!-- WORKOUT CARD -->
-    <div class="card" id="workoutCard">
-      Loading…
-    </div>
+    <div class="card" id="workoutCard">Loading…</div>
 
     <div class="footer">
-      Training maxes + “Used” weights are stored locally on this device (via localStorage). Clearing browser data will reset them.
+      Training maxes + “Used” weights auto-save locally (localStorage). Clearing browser data resets them.
     </div>
   </div>
 
   <script>
     // -------------------------
-    // TRAINING MAX STORAGE
+    // STORAGE KEYS
     // -------------------------
+    const TRAINING_MAX_KEY = "olyTrainingMaxes_v2";
+    const BOOKMARK_KEY = "olyProgramLastWorkout_v2";
+    const LOG_PREFIX = "olyLog_v2_";           // per session line
+    const LIFT_HISTORY_PREFIX = "olyLift_v2_"; // per liftId history
 
-    const TRAINING_MAX_KEY = "olyTrainingMaxes";
+    // -------------------------
+    // TRAINING MAXES
+    // -------------------------
     let trainingMaxes = {
       cj: 205,
       sn: 115,
@@ -478,1368 +392,533 @@
     function loadTrainingMaxes() {
       try {
         const raw = localStorage.getItem(TRAINING_MAX_KEY);
-        if (raw) {
-          const stored = JSON.parse(raw);
-          trainingMaxes = { ...trainingMaxes, ...stored };
-        }
-      } catch (e) {
-        // ignore
-      }
+        if (raw) trainingMaxes = { ...trainingMaxes, ...JSON.parse(raw) };
+      } catch (e) {}
     }
-
     function saveTrainingMaxes() {
       localStorage.setItem(TRAINING_MAX_KEY, JSON.stringify(trainingMaxes));
     }
 
-    function initTrainingMaxInputs() {
-      const mapping = {
-        cj: "tm_cj",
-        sn: "tm_sn",
-        bsq: "tm_bsq",
-        fsq: "tm_fsq",
-        bench: "tm_bench",
-        pp: "tm_pp"
+    function bindTrainingMaxInputs() {
+      const map = {
+        cj: "tm_cj", sn: "tm_sn", bsq: "tm_bsq", fsq: "tm_fsq", bench: "tm_bench", pp: "tm_pp"
       };
-      for (const key in mapping) {
-        const el = document.getElementById(mapping[key]);
-        if (!el) continue;
-        const val = trainingMaxes[key];
-        el.value = val !== "" && val !== undefined && val !== null ? val : "";
-      }
-    }
-
-    function updateTrainingMax(key, value) {
-      const num = parseFloat(value);
-      if (!isNaN(num)) {
-        trainingMaxes[key] = num;
-      } else {
-        trainingMaxes[key] = "";
-      }
-      saveTrainingMaxes();
-      renderWorkout();
+      Object.keys(map).forEach(k => {
+        const el = document.getElementById(map[k]);
+        if (!el) return;
+        el.value = (trainingMaxes[k] !== "" && trainingMaxes[k] != null) ? trainingMaxes[k] : "";
+        el.addEventListener("input", () => {
+          const num = parseFloat(el.value);
+          trainingMaxes[k] = (!isNaN(num)) ? num : "";
+          saveTrainingMaxes();
+          renderWorkout();
+        });
+      });
     }
 
     // -------------------------
-    // PROGRAM DATA (12 WEEKS)
+    // BOOKMARK
     // -------------------------
-
-    const program = {
-      // BLOCK 1 · BASE (Weeks 1–4)
-      1: { // Week 1 – C&J Base
-        1: {
-          title: "Week 1 Day 1 – Clean & Jerk + Lower + Plyo",
-          focus: "C&J technique · lower strength · plyometrics",
-          blocks: [
-            {
-              name: "Olympic Lift",
-              items: [
-                "Clean & Jerk · 6×1 @ 60–70% · RPE 6–7",
-                "Clean Pull · 3×3 @ ~90% · RPE 7"
-              ]
-            },
-            {
-              name: "Plyometrics",
-              items: [
-                "Box Jump · 3×3 · RPE 5–6",
-                "Broad Jump · 2×3 · RPE 6"
-              ]
-            },
-            {
-              name: "Strength",
-              items: [
-                "Back Squat · 5×5 @ RPE 7 (~215–225 lb)",
-                "RDL · 4×6 @ RPE 7 (~165–185 lb)",
-                "Split Squat · 3×8/side @ RPE 8"
-              ]
-            },
-            {
-              name: "Core",
-              items: [
-                "Toes-to-Bar · 3×8–10 · RPE 6–7"
-              ]
-            }
-          ]
-        },
-        2: {
-          title: "Week 1 Day 2 – Upper Push + Sled Push (Clavicle-Friendly)",
-          focus: "Push strength without aggravating collarbone",
-          blocks: [
-            {
-              name: "Push",
-              items: [
-                "Bench Press · 4×6 @ RPE 7",
-                "Landmine Press · 4×8 @ RPE 6–7 (sub for Push Press while sore)",
-                "Incline DB Press · 3×8 @ RPE 8",
-                "Dips · 3×10 @ RPE 7 (or push-ups if painful)"
-              ]
-            },
-            {
-              name: "Conditioning",
-              items: [
-                "Sled Push · 4×20–40 m @ RPE 8"
-              ]
-            },
-            {
-              name: "Shoulder Stability",
-              items: [
-                "Serratus Wall Slides · 2×10",
-                "Face Pulls · 3×12"
-              ]
-            }
-          ]
-        },
-        3: {
-          title: "Week 1 Day 3 – Lower + Sled Pull + Posterior Chain",
-          focus: "Front squat base · hamstrings · VMO via backward sled",
-          blocks: [
-            {
-              name: "Strength",
-              items: [
-                "Front Squat · 5×3 @ RPE 7 (~185–195 lb)",
-                "Hamstring Curl · 4×8 @ RPE 7",
-                "Hip Thrust · 4×8 @ RPE 8 (~185–225 lb)"
-              ]
-            },
-            {
-              name: "Sled Pulls",
-              items: [
-                "Backward Sled Drag · 4×20–30 m @ RPE 7–8"
-              ]
-            },
-            {
-              name: "Posterior Chain / Core",
-              items: [
-                "GHR / Nordic · 3×6 @ RPE 8",
-                "Copenhagen Plank · 3×20 sec/side"
-              ]
-            }
-          ]
-        },
-        4: {
-          title: "Week 1 Day 4 – Upper Pull + Clean Technique",
-          focus: "Upper pull base · clean skill",
-          blocks: [
-            {
-              name: "Clean Technique",
-              items: [
-                "Hang Clean · 4×2 @ 40–55% · RPE 4–5",
-                "Clean Pull Pops · 2×5 (empty bar or 95 lb)"
-              ]
-            },
-            {
-              name: "Pull Strength",
-              items: [
-                "Weighted Pull-Ups · 4×5 @ RPE 7",
-                "Pendlay Row · 4×6 @ RPE 7 (~135–155 lb)",
-                "Reverse Fly · 3×12"
-              ]
-            },
-            {
-              name: "Core",
-              items: [
-                "Hollow Hold · 3×20 sec"
-              ]
-            }
-          ]
-        }
-      },
-
-      2: { // Week 2 – Snatch Base
-        1: {
-          title: "Week 2 Day 1 – Power Snatch + Lower + Plyo",
-          focus: "Power snatch base · lower strength · plyometrics",
-          blocks: [
-            {
-              name: "Olympic Lift",
-              items: [
-                "Power Snatch · 6×2 @ 60–70% · RPE 6–7",
-                "Snatch Pull · 3×3 @ ~90%",
-                "Overhead Squat · 3×3 @ ~65% (position focus)"
-              ]
-            },
-            {
-              name: "Plyometrics",
-              items: [
-                "Box Jump · 3×3 · RPE 6",
-                "Lateral Skater Hops · 2×5/side"
-              ]
-            },
-            {
-              name: "Strength",
-              items: [
-                "Back Squat · 5×5 @ RPE 7 (~215–230 lb)",
-                "RDL · 4×6 @ RPE 7 (~175–195 lb)",
-                "Step-Ups · 3×8/side @ RPE 8"
-              ]
-            },
-            {
-              name: "Core",
-              items: [
-                "Toes-to-Bar · 3×8–10"
-              ]
-            }
-          ]
-        },
-        2: {
-          title: "Week 2 Day 2 – Upper Push + Sled Push (Push Press Test)",
-          focus: "Push strength · test re-intro of Push Press",
-          blocks: [
-            {
-              name: "Push",
-              items: [
-                "Bench Press · 4×6 @ RPE 7",
-                "Push Press test: 135×3 → if pain-free → 3×3 @ RPE 6",
-                "If painful → Landmine Press 4×8 @ RPE 6–7 instead",
-                "Incline DB Press · 3×8 @ RPE 8",
-                "Dips · 3×10 @ RPE 7"
-              ]
-            },
-            {
-              name: "Conditioning",
-              items: [
-                "Sled Push · 4×20–40 m @ RPE 8 (slightly heavier than Week 1)"
-              ]
-            }
-          ]
-        },
-        3: {
-          title: "Week 2 Day 3 – Lower + Sled Pull + Pause Front Squat",
-          focus: "Pause FS · mobility + position · hamstrings",
-          blocks: [
-            {
-              name: "Strength",
-              items: [
-                "Pause Front Squat · 4×3 @ RPE 6–7 (2–3s pause)",
-                "Hamstring Curl · 4×10 @ RPE 7",
-                "Hip Thrust · 4×8 @ RPE 8"
-              ]
-            },
-            {
-              name: "Sled Pulls",
-              items: [
-                "Backward Sled Drag · 4×20–30 m @ RPE 7–8"
-              ]
-            },
-            {
-              name: "Posterior Chain / Core",
-              items: [
-                "GHR / Nordic · 3×8",
-                "Copenhagen Plank · 3×20 sec/side"
-              ]
-            }
-          ]
-        },
-        4: {
-          title: "Week 2 Day 4 – Upper Pull + Snatch Technique",
-          focus: "Upper pull · snatch skill",
-          blocks: [
-            {
-              name: "Snatch Technique",
-              items: [
-                "Hang Power Snatch · 4×2 @ 40–55%",
-                "Snatch Balance · 3×2",
-                "Snatch Push Press · 3×5"
-              ]
-            },
-            {
-              name: "Pull Strength",
-              items: [
-                "Weighted Pull-Ups · 4×5 @ RPE 7",
-                "Barbell Row · 4×6 @ RPE 7",
-                "Face Pulls · 3×12"
-              ]
-            },
-            {
-              name: "Core",
-              items: [
-                "Hanging Knee Raises · 3×12"
-              ]
-            }
-          ]
-        }
-      },
-
-      3: { // Week 3 – C&J Base+
-        1: {
-          title: "Week 3 Day 1 – Clean & Jerk + Lower + Plyo (Progression)",
-          focus: "Heavier C&J · progressing squats",
-          blocks: [
-            {
-              name: "Olympic Lift",
-              items: [
-                "Clean & Jerk · 6×1 @ 65–75% · RPE 6–7.5",
-                "Clean Pull · 3×3 @ 90–95%"
-              ]
-            },
-            {
-              name: "Plyometrics",
-              items: [
-                "Box Jump · 3×3 (slightly higher) · RPE 6",
-                "Broad Jump · 2×3 · RPE 6–7"
-              ]
-            },
-            {
-              name: "Strength",
-              items: [
-                "Back Squat · 5×5 @ RPE 7–7.5 (~225–240 lb)",
-                "RDL · 4×6 @ RPE 7 (~175–195 lb)",
-                "Split Squat · 3×8/side @ RPE 8"
-              ]
-            },
-            {
-              name: "Core",
-              items: [
-                "Toes-to-Bar · 3×8–10 @ RPE 7"
-              ]
-            }
-          ]
-        },
-        2: {
-          title: "Week 3 Day 2 – Upper Push + Sled Push (Prog)",
-          focus: "Push strength · shoulder health",
-          blocks: [
-            {
-              name: "Push",
-              items: [
-                "Bench Press · 4×6 @ RPE 7–7.5",
-                "Push Press · 4×3 @ RPE 6–7 (if pain-free)",
-                "Incline DB Press · 3×8 @ RPE 8",
-                "Dips · 3×10 @ RPE 7–8"
-              ]
-            },
-            {
-              name: "Conditioning",
-              items: [
-                "Sled Push · 4×20–40 m @ RPE 8 (heavier than Week 2)"
-              ]
-            },
-            {
-              name: "Stability",
-              items: [
-                "BTN Snatch-Grip Press · 3×5 light–moderate OR Wall Slides + Face Pulls"
-              ]
-            }
-          ]
-        },
-        3: {
-          title: "Week 3 Day 3 – Lower + Sled Pull + Posterior Chain (Prog)",
-          focus: "Heavier FS · sled · hamstrings",
-          blocks: [
-            {
-              name: "Strength",
-              items: [
-                "Front Squat · 5×3 @ RPE 7.5 (~185–205 lb)",
-                "Hamstring Curl · 4×8 @ RPE 7–8",
-                "Hip Thrust · 4×8 @ RPE 8"
-              ]
-            },
-            {
-              name: "Sled Pulls",
-              items: [
-                "Backward Sled Drag · 4×20–30 m @ RPE 7–8 (heavier)"
-              ]
-            },
-            {
-              name: "Posterior Chain / Core",
-              items: [
-                "GHR / Nordic · 3×6–8 @ RPE 8",
-                "Copenhagen Plank · 3×20–30 sec/side"
-              ]
-            }
-          ]
-        },
-        4: {
-          title: "Week 3 Day 4 – Upper Pull + Clean Technique (Prog)",
-          focus: "Heavier pull · clean skill",
-          blocks: [
-            {
-              name: "Clean Technique",
-              items: [
-                "Hang Clean · 4×2 @ 50–60%",
-                "Clean Pull Pops · 2×5"
-              ]
-            },
-            {
-              name: "Pull Strength",
-              items: [
-                "Weighted Pull-Ups · 4×6 @ RPE 7–8",
-                "Pendlay Row · 4×6 @ RPE 7–8",
-                "Reverse Fly · 3×12"
-              ]
-            },
-            {
-              name: "Core",
-              items: [
-                "Hollow Rocks · 3×20–30 sec"
-              ]
-            }
-          ]
-        }
-      },
-
-      4: { // Week 4 – Snatch Base+
-        1: {
-          title: "Week 4 Day 1 – Power Snatch + Lower + Plyo (Prog)",
-          focus: "Heavier power snatch · squats",
-          blocks: [
-            {
-              name: "Olympic Lift",
-              items: [
-                "Power Snatch · 6×2 @ 65–75% · RPE 7",
-                "Snatch Pull · 3×3 @ ~95%",
-                "Overhead Squat · 3×3 @ ~70%"
-              ]
-            },
-            {
-              name: "Plyometrics",
-              items: [
-                "Box Jump · 3×3 @ RPE 6–7",
-                "Lateral Skater Hops · 2×5–6/side"
-              ]
-            },
-            {
-              name: "Strength",
-              items: [
-                "Back Squat · 5×5 @ RPE 7.5 (~230–245 lb)",
-                "RDL · 4×6 @ RPE 7–8",
-                "Step-Ups · 3×8/side @ RPE 8"
-              ]
-            },
-            {
-              name: "Core",
-              items: [
-                "Toes-to-Bar · 3×8–10 @ RPE 7"
-              ]
-            }
-          ]
-        },
-        2: {
-          title: "Week 4 Day 2 – Upper Push + Sled Push (Prog)",
-          focus: "Stronger push + conditioning",
-          blocks: [
-            {
-              name: "Push",
-              items: [
-                "Bench Press · 4×6 @ RPE 7.5",
-                "Push Press · 4×3 @ RPE 7 (add 5–10 lb from Week 3 if crisp)",
-                "Incline DB Press · 3×8 @ RPE 8",
-                "Dips · 3×10 @ RPE 8"
-              ]
-            },
-            {
-              name: "Conditioning",
-              items: [
-                "Sled Push · 4×20–40 m @ RPE 8–9"
-              ]
-            }
-          ]
-        },
-        3: {
-          title: "Week 4 Day 3 – Lower + Sled Pull + Posterior Chain (Prog)",
-          focus: "Pause FS · sled · posterior chain",
-          blocks: [
-            {
-              name: "Strength",
-              items: [
-                "Pause Front Squat · 4×3 @ RPE 7 (~175–190 lb)",
-                "Hamstring Curl · 4×8–10 @ RPE 7–8",
-                "Hip Thrust · 4×8 @ RPE 8 (heavier than Week 3)"
-              ]
-            },
-            {
-              name: "Sled Pulls",
-              items: [
-                "Backward Sled Drag · 4×20–30 m @ RPE 8"
-              ]
-            },
-            {
-              name: "Posterior Chain / Core",
-              items: [
-                "GHR / Nordic · 3×6–8 @ RPE 8",
-                "Copenhagen Plank · 3×20–30 sec/side"
-              ]
-            }
-          ]
-        },
-        4: {
-          title: "Week 4 Day 4 – Upper Pull + Snatch Technique (Prog)",
-          focus: "Refine snatch · upper pull",
-          blocks: [
-            {
-              name: "Snatch Technique",
-              items: [
-                "Hang Power Snatch · 4×2 @ 50–60%",
-                "Snatch Balance · 3×2",
-                "Snatch Push Press · 3×5"
-              ]
-            },
-            {
-              name: "Pull Strength",
-              items: [
-                "Weighted Pull-Ups · 4×6 @ RPE 7–8",
-                "Barbell Row · 4×6 @ RPE 7–8",
-                "Face Pulls · 3×12"
-              ]
-            },
-            {
-              name: "Core",
-              items: [
-                "Hanging Knee Raises / TTB · 3×10–12"
-              ]
-            }
-          ]
-        }
-      },
-
-      // BLOCK 2 · INTENSIFICATION (Weeks 5–8)
-
-      5: { // Week 5 – C&J Intensification
-        1: {
-          title: "Week 5 Day 1 – C&J + Lower + Plyo (Intensify)",
-          focus: "C&J intensity · slightly lower volume",
-          blocks: [
-            {
-              name: "Olympic Lift",
-              items: [
-                "Clean & Jerk · 5×1 @ 70–80% · RPE 7–8",
-                "Clean Pull · 3×3 @ 95%"
-              ]
-            },
-            {
-              name: "Plyometrics",
-              items: [
-                "Box Jump · 3×2 (focus height + quality)",
-                "Broad Jump · 2×2"
-              ]
-            },
-            {
-              name: "Strength",
-              items: [
-                "Back Squat · 4×4 @ RPE 7.5–8",
-                "RDL · 3×5 @ RPE 7–8",
-                "Split Squat · 3×6–8/side @ RPE 8"
-              ]
-            },
-            {
-              name: "Core",
-              items: [
-                "Toes-to-Bar · 3×8–10"
-              ]
-            }
-          ]
-        },
-        2: {
-          title: "Week 5 Day 2 – Upper Push + Sled (Intensify)",
-          focus: "Upper push intensity",
-          blocks: [
-            {
-              name: "Push",
-              items: [
-                "Bench Press · 4×5 @ RPE 7.5–8",
-                "Push Press · 4×3 @ RPE 7",
-                "Incline DB Press · 3×6–8 @ RPE 8",
-                "Dips · 3×8–10 @ RPE 8"
-              ]
-            },
-            {
-              name: "Conditioning",
-              items: [
-                "Sled Push · 4×20–30 m @ RPE 8–9"
-              ]
-            }
-          ]
-        },
-        3: {
-          title: "Week 5 Day 3 – Lower + Sled + Posterior (Intensify)",
-          focus: "Front squat load · hamstrings",
-          blocks: [
-            {
-              name: "Strength",
-              items: [
-                "Front Squat · 4×3 @ RPE 7.5–8",
-                "Hamstring Curl · 4×8 @ RPE 7–8",
-                "Hip Thrust · 4×6–8 @ RPE 8"
-              ]
-            },
-            {
-              name: "Sled Pulls",
-              items: [
-                "Backward Sled Drag · 4×20–30 m @ RPE 8"
-              ]
-            },
-            {
-              name: "Core",
-              items: [
-                "GHR / Nordic · 3×6–8",
-                "Copenhagen Plank · 3×20–30 sec/side"
-              ]
-            }
-          ]
-        },
-        4: {
-          title: "Week 5 Day 4 – Upper Pull + Clean Tech (Intensify)",
-          focus: "Heavier pulling · maintain clean speed",
-          blocks: [
-            {
-              name: "Clean Technique",
-              items: [
-                "Hang Clean · 3×2 @ ~70%",
-                "Light Clean Pull Pops · 2×5"
-              ]
-            },
-            {
-              name: "Pull Strength",
-              items: [
-                "Weighted Pull-Ups · 4×5–6 @ RPE 8",
-                "Pendlay Row · 4×5 @ RPE 7–8",
-                "Reverse Fly · 3×12"
-              ]
-            },
-            {
-              name: "Core",
-              items: [
-                "Hollow Rocks · 3×20–30 sec"
-              ]
-            }
-          ]
-        }
-      },
-
-      6: { // Week 6 – Snatch Intensification
-        1: {
-          title: "Week 6 Day 1 – Power Snatch + Lower (Intensify)",
-          focus: "Power snatch intensity · lower strength",
-          blocks: [
-            {
-              name: "Olympic Lift",
-              items: [
-                "Power Snatch · 5×2 @ 70–80% · RPE 7–8",
-                "Snatch Pull · 3×3 @ 95%",
-                "Overhead Squat · 3×2 @ ~75–80%"
-              ]
-            },
-            {
-              name: "Strength",
-              items: [
-                "Back Squat · 4×4 @ RPE 7.5–8",
-                "RDL · 3×5 @ RPE 7–8",
-                "Step-Ups · 3×6–8/side @ RPE 8"
-              ]
-            },
-            {
-              name: "Core",
-              items: [
-                "Toes-to-Bar · 3×8–10"
-              ]
-            }
-          ]
-        },
-        2: {
-          title: "Week 6 Day 2 – Upper Push + Sled (Intensify)",
-          focus: "Maintain push intensity",
-          blocks: [
-            {
-              name: "Push",
-              items: [
-                "Bench Press · 4×5 @ RPE 7.5–8",
-                "Push Press · 4×3 @ RPE 7",
-                "Incline DB Press · 3×6–8 @ RPE 8",
-                "Dips · 3×8–10 @ RPE 8"
-              ]
-            },
-            {
-              name: "Conditioning",
-              items: [
-                "Sled Push · 4×20–30 m @ RPE 8–9"
-              ]
-            }
-          ]
-        },
-        3: {
-          title: "Week 6 Day 3 – Lower + Sled + Pause FS (Intensify)",
-          focus: "Pause FS heavier · posterior chain",
-          blocks: [
-            {
-              name: "Strength",
-              items: [
-                "Pause Front Squat · 4×3 @ RPE 7.5",
-                "Hamstring Curl · 4×8–10 @ RPE 7–8",
-                "Hip Thrust · 4×6–8 @ RPE 8"
-              ]
-            },
-            {
-              name: "Sled Pulls",
-              items: [
-                "Backward Sled Drag · 4×20–30 m @ RPE 8"
-              ]
-            },
-            {
-              name: "Core",
-              items: [
-                "GHR / Nordic · 3×6–8",
-                "Copenhagen Plank · 3×20–30 sec/side"
-              ]
-            }
-          ]
-        },
-        4: {
-          title: "Week 6 Day 4 – Upper Pull + Snatch Tech (Intensify)",
-          focus: "Snatch skill · pulling strength",
-          blocks: [
-            {
-              name: "Snatch Technique",
-              items: [
-                "Hang Power Snatch · 3×2 @ 70%",
-                "Snatch Balance · 3×2 moderate",
-                "Snatch Push Press · 3×5 moderate"
-              ]
-            },
-            {
-              name: "Pull Strength",
-              items: [
-                "Weighted Pull-Ups · 4×5–6 @ RPE 8",
-                "Barbell Row · 4×5 @ RPE 7–8",
-                "Face Pulls · 3×12"
-              ]
-            },
-            {
-              name: "Core",
-              items: [
-                "Hanging Knee Raises / TTB · 3×10–12"
-              ]
-            }
-          ]
-        }
-      },
-
-      7: { // Week 7 – C&J Intensification+
-        1: {
-          title: "Week 7 Day 1 – C&J + Lower (Intensify+)",
-          focus: "Heavier C&J · nearing peak loads",
-          blocks: [
-            {
-              name: "Olympic Lift",
-              items: [
-                "Clean & Jerk · 4×1 @ 75–85% · RPE 7.5–8",
-                "Clean Pull · 3×2 @ 95–100%"
-              ]
-            },
-            {
-              name: "Strength",
-              items: [
-                "Back Squat · 4×3 @ RPE 8",
-                "RDL · 3×5 @ RPE 7–8"
-              ]
-            },
-            {
-              name: "Core",
-              items: [
-                "Toes-to-Bar · 3×8–10"
-              ]
-            }
-          ]
-        },
-        2: {
-          title: "Week 7 Day 2 – Upper Push (Intensify+)",
-          focus: "Push strength maintained",
-          blocks: [
-            {
-              name: "Push",
-              items: [
-                "Bench Press · 4×4–5 @ RPE 8",
-                "Push Press · 4×2–3 @ RPE 7–8",
-                "Accessory push limited volume"
-              ]
-            }
-          ]
-        },
-        3: {
-          title: "Week 7 Day 3 – Lower (Intensify+)",
-          focus: "Front squat intensity",
-          blocks: [
-            {
-              name: "Strength",
-              items: [
-                "Front Squat · 4×2–3 @ RPE 8",
-                "Posterior chain assistance · 2–3 movements @ RPE 7–8"
-              ]
-            }
-          ]
-        },
-        4: {
-          title: "Week 7 Day 4 – Upper Pull + Clean Tech",
-          focus: "Keep pull strong, fatigue controlled",
-          blocks: [
-            {
-              name: "Clean Technique",
-              items: [
-                "Hang Clean · light technique · 3×2",
-                "Clean Pull Pops · 2×3"
-              ]
-            },
-            {
-              name: "Pull Strength",
-              items: [
-                "Weighted Pull-Ups · 3–4×4–5 @ RPE 8",
-                "Row variation · 3×5–6"
-              ]
-            }
-          ]
-        }
-      },
-
-      8: { // Week 8 – Snatch Intensification+
-        1: {
-          title: "Week 8 Day 1 – Power Snatch + Lower (Intensify+)",
-          focus: "Power snatch intensity · prep for peak",
-          blocks: [
-            {
-              name: "Olympic Lift",
-              items: [
-                "Power Snatch · 4×2 @ 75–85% · RPE 7.5–8",
-                "Snatch Pull · 3×2 @ 95–100%",
-                "Overhead Squat · 2–3×2 light–moderate"
-              ]
-            },
-            {
-              name: "Strength",
-              items: [
-                "Back Squat · 4×3 @ RPE 8",
-                "RDL or good morning · 3×5–6"
-              ]
-            }
-          ]
-        },
-        2: {
-          title: "Week 8 Day 2 – Upper Push (Support)",
-          focus: "Maintain pressing without adding fatigue",
-          blocks: [
-            {
-              name: "Push",
-              items: [
-                "Bench Press · 3×4–5 @ RPE 7–7.5",
-                "Light overhead (DB / landmine) · 2–3×8 @ RPE 6–7"
-              ]
-            }
-          ]
-        },
-        3: {
-          title: "Week 8 Day 3 – Lower Support",
-          focus: "Front squat maintained · not crushed",
-          blocks: [
-            {
-              name: "Strength",
-              items: [
-                "Front Squat · 3–4×2 @ RPE 7.5",
-                "Hamstring / glute accessory · 2–3×8"
-              ]
-            }
-          ]
-        },
-        4: {
-          title: "Week 8 Day 4 – Upper Pull + Snatch Tech",
-          focus: "Snatch skill · pull support",
-          blocks: [
-            {
-              name: "Snatch Technique",
-              items: [
-                "Hang Power Snatch · 3×2 light–moderate",
-                "Snatch Balance or tall snatch · 2–3×2"
-              ]
-            },
-            {
-              name: "Pull Strength",
-              items: [
-                "Pull-Ups / Rows · 3–4×5–6 @ RPE 7–8"
-              ]
-            }
-          ]
-        }
-      },
-
-      // BLOCK 3 · PEAK + TAPER (Weeks 9–12)
-
-      9: { // Week 9 – C&J Peak
-        1: {
-          title: "Week 9 Day 1 – C&J Peak",
-          focus: "Heavy C&J singles · controlled volume",
-          blocks: [
-            {
-              name: "Olympic Lift",
-              items: [
-                "Clean & Jerk · work to heavy single @ ~85–90% (no misses)",
-                "Clean Pull · 2–3×2 @ 95–100%"
-              ]
-            },
-            {
-              name: "Strength",
-              items: [
-                "Back Squat · 3×2–3 @ RPE 8",
-                "Very light posterior accessory"
-              ]
-            }
-          ]
-        },
-        2: {
-          title: "Week 9 Day 2 – Upper Push (Peak Support)",
-          focus: "Maintain pressing strength with low fatigue",
-          blocks: [
-            {
-              name: "Push",
-              items: [
-                "Bench Press · 3×3–4 @ RPE 7–7.5",
-                "Very light overhead work"
-              ]
-            }
-          ]
-        },
-        3: {
-          title: "Week 9 Day 3 – Front Squat Peak",
-          focus: "Heavy front squat doubles or single",
-          blocks: [
-            {
-              name: "Strength",
-              items: [
-                "Front Squat · work to heavy double or single @ RPE 8–8.5 (no grind)",
-                "Minimal accessory"
-              ]
-            }
-          ]
-        },
-        4: {
-          title: "Week 9 Day 4 – Clean Technique & Pull Support",
-          focus: "Sharp reps · stay fast",
-          blocks: [
-            {
-              name: "Technique",
-              items: [
-                "Hang Clean / tall clean · light skill",
-                "Clean Pull · 2×2 @ ~90%"
-              ]
-            }
-          ]
-        }
-      },
-
-      10: { // Week 10 – Snatch Peak
-        1: {
-          title: "Week 10 Day 1 – Power Snatch Peak",
-          focus: "Heavier power snatch doubles or singles",
-          blocks: [
-            {
-              name: "Olympic Lift",
-              items: [
-                "Power Snatch · work to heavy double / single @ ~85–90% (no misses)",
-                "Snatch Pull · 2–3×2 @ ~95%"
-              ]
-            },
-            {
-              name: "Strength",
-              items: [
-                "Back Squat · 3×2 @ RPE 7.5–8",
-                "Very light accessory"
-              ]
-            }
-          ]
-        },
-        2: {
-          title: "Week 10 Day 2 – Upper Push (Support)",
-          focus: "Keep pressing without adding fatigue",
-          blocks: [
-            {
-              name: "Push",
-              items: [
-                "Bench Press · 3×3–4 @ RPE 7",
-                "Optional light DB overhead"
-              ]
-            }
-          ]
-        },
-        3: {
-          title: "Week 10 Day 3 – Front Squat Support",
-          focus: "Hold front squat strength",
-          blocks: [
-            {
-              name: "Strength",
-              items: [
-                "Front Squat · 3×2 @ RPE 7.5",
-                "Minimal accessory"
-              ]
-            }
-          ]
-        },
-        4: {
-          title: "Week 10 Day 4 – Snatch Technique & Pull Support",
-          focus: "Fast snatch patterns · light pull",
-          blocks: [
-            {
-              name: "Technique",
-              items: [
-                "Hang Power Snatch · 3×2 light–moderate",
-                "Snatch Pull · 2×2 @ ~90%"
-              ]
-            }
-          ]
-        }
-      },
-
-      11: { // Week 11 – Taper C&J
-        1: {
-          title: "Week 11 Day 1 – C&J Taper",
-          focus: "Sharp moderate singles · reduce volume",
-          blocks: [
-            {
-              name: "Olympic Lift",
-              items: [
-                "Clean & Jerk · 4–5×1 @ 70–80% · speed focus",
-                "Optional light clean pull · 2×2 @ ~90%"
-              ]
-            }
-          ]
-        },
-        2: {
-          title: "Week 11 Day 2 – Upper Push Taper",
-          focus: "Reduce volume · keep groove",
-          blocks: [
-            {
-              name: "Push",
-              items: [
-                "Bench Press · 3×3 @ RPE 6–7",
-                "Light accessory only if you feel good"
-              ]
-            }
-          ]
-        },
-        3: {
-          title: "Week 11 Day 3 – Light Squat / Mobility",
-          focus: "Stay moving · recover",
-          blocks: [
-            {
-              name: "Strength",
-              items: [
-                "Back or Front Squat · 3×3 @ RPE 6",
-                "Extra mobility for hips, ankles, T-spine"
-              ]
-            }
-          ]
-        },
-        4: {
-          title: "Week 11 Day 4 – Easy Technique",
-          focus: "C&J technique · very light",
-          blocks: [
-            {
-              name: "Technique",
-              items: [
-                "Power clean + power jerk complexes · light",
-                "No grinding, no misses"
-              ]
-            }
-          ]
-        }
-      },
-
-      12: { // Week 12 – Taper Snatch
-        1: {
-          title: "Week 12 Day 1 – Power Snatch Taper",
-          focus: "Fast light–moderate snatches",
-          blocks: [
-            {
-              name: "Olympic Lift",
-              items: [
-                "Power Snatch · 4×1–2 @ 70–80%",
-                "Optional very light snatch pull"
-              ]
-            }
-          ]
-        },
-        2: {
-          title: "Week 12 Day 2 – Upper Push Taper",
-          focus: "Low volume · recovery",
-          blocks: [
-            {
-              name: "Push",
-              items: [
-                "Bench / DB press · 2–3×3–5 @ RPE ~6–7"
-              ]
-            }
-          ]
-        },
-        3: {
-          title: "Week 12 Day 3 – Light Squat & Mobility",
-          focus: "Keep pattern · feel fresh",
-          blocks: [
-            {
-              name: "Strength",
-              items: [
-                "Squat variation · 2–3×3 light",
-                "Extended mobility for hips / ankles / shoulders"
-              ]
-            }
-          ]
-        },
-        4: {
-          title: "Week 12 Day 4 – Optional Tune-Up / Rest",
-          focus: "If you feel good: very light technique · otherwise rest",
-          blocks: [
-            {
-              name: "Guideline",
-              items: [
-                "Optional: light powers and pulls, no fatigue",
-                "Or full rest day if you need it"
-              ]
-            }
-          ]
-        }
-      }
-    };
-
-    // -------------------------
-    // PROGRESSION CONFIG (AUTO-CALC SUGGESTED LOADS)
-    // key = week-day-blockIndex-itemIndex
-    // -------------------------
-
-    const progressionConfig = {
-      // Week 1 C&J
-      "1-1-0-0": { maxKey: "cj", minPct: 0.6, maxPct: 0.7 },
-      "1-1-0-1": { maxKey: "cj", minPct: 0.9, maxPct: 0.9 },
-
-      // Week 2 PSn
-      "2-1-0-0": { maxKey: "sn", minPct: 0.6, maxPct: 0.7 },
-      "2-1-0-1": { maxKey: "sn", minPct: 0.9, maxPct: 0.9 },
-      "2-1-0-2": { maxKey: "sn", minPct: 0.65, maxPct: 0.65 },
-
-      // Week 3 C&J
-      "3-1-0-0": { maxKey: "cj", minPct: 0.65, maxPct: 0.75 },
-      "3-1-0-1": { maxKey: "cj", minPct: 0.9, maxPct: 0.95 },
-
-      // Week 4 PSn
-      "4-1-0-0": { maxKey: "sn", minPct: 0.65, maxPct: 0.75 },
-      "4-1-0-1": { maxKey: "sn", minPct: 0.95, maxPct: 0.95 },
-      "4-1-0-2": { maxKey: "sn", minPct: 0.7, maxPct: 0.7 },
-
-      // Week 5 C&J intensify
-      "5-1-0-0": { maxKey: "cj", minPct: 0.7, maxPct: 0.8 },
-      "5-1-0-1": { maxKey: "cj", minPct: 0.95, maxPct: 0.95 },
-
-      // Week 6 PSn intensify
-      "6-1-0-0": { maxKey: "sn", minPct: 0.7, maxPct: 0.8 },
-      "6-1-0-1": { maxKey: "sn", minPct: 0.95, maxPct: 0.95 },
-      "6-1-0-2": { maxKey: "sn", minPct: 0.75, maxPct: 0.8 },
-
-      // Week 7 C&J intensify+
-      "7-1-0-0": { maxKey: "cj", minPct: 0.75, maxPct: 0.85 },
-      "7-1-0-1": { maxKey: "cj", minPct: 0.95, maxPct: 1.0 },
-
-      // Week 8 PSn intensify+
-      "8-1-0-0": { maxKey: "sn", minPct: 0.75, maxPct: 0.85 },
-      "8-1-0-1": { maxKey: "sn", minPct: 0.95, maxPct: 1.0 },
-
-      // Week 9 C&J peak
-      "9-1-0-0": { maxKey: "cj", minPct: 0.85, maxPct: 0.9 },
-      "9-1-0-1": { maxKey: "cj", minPct: 0.95, maxPct: 1.0 },
-
-      // Week 10 Snatch peak
-      "10-1-0-0": { maxKey: "sn", minPct: 0.85, maxPct: 0.9 },
-      "10-1-0-1": { maxKey: "sn", minPct: 0.95, maxPct: 0.95 },
-
-      // Week 11 C&J taper
-      "11-1-0-0": { maxKey: "cj", minPct: 0.7, maxPct: 0.8 },
-
-      // Week 12 Snatch taper
-      "12-1-0-0": { maxKey: "sn", minPct: 0.7, maxPct: 0.8 }
-    };
-
-    function roundToNearest5(x) {
-      return Math.round(x / 5) * 5;
-    }
-
-    function getSuggestionFor(key) {
-      const cfg = progressionConfig[key];
-      if (!cfg) return "";
-      const tm = trainingMaxes[cfg.maxKey];
-      if (!tm || isNaN(tm)) return "";
-      let min = null;
-      let max = null;
-      if (cfg.pct) {
-        min = max = roundToNearest5(tm * cfg.pct);
-      } else {
-        if (cfg.minPct) min = roundToNearest5(tm * cfg.minPct);
-        if (cfg.maxPct) max = roundToNearest5(tm * cfg.maxPct);
-      }
-      if (min && max && Math.abs(max - min) >= 5) {
-        return `Suggested: ${min}–${max} lb`;
-      }
-      const val = max || min;
-      if (!val) return "";
-      return `Suggested: ${val} lb`;
-    }
-
-    // -------------------------
-    // BOOKMARK + LOG STORAGE
-    // -------------------------
-
-    const BOOKMARK_KEY = "olyProgramLastWorkout";
-    const LOG_PREFIX = "olyLog_";
-
-    function saveLog(key, value) {
-      if (!key) return;
-      if (value === "") {
-        localStorage.removeItem(LOG_PREFIX + key);
-      } else {
-        localStorage.setItem(LOG_PREFIX + key, value);
-      }
-    }
-
-    function getLog(key) {
-      if (!key) return "";
-      const val = localStorage.getItem(LOG_PREFIX + key);
-      return val || "";
-    }
-
-    function saveBookmark() {
-      const week = parseInt(weekSelect.value, 10);
-      const day = parseInt(daySelect.value, 10);
-      const data = { week, day };
-      localStorage.setItem(BOOKMARK_KEY, JSON.stringify(data));
+    const bookmarkDisplay = document.getElementById("bookmarkDisplay");
+    function saveBookmark(week, day) {
+      localStorage.setItem(BOOKMARK_KEY, JSON.stringify({ week, day }));
       updateBookmarkDisplay();
     }
-
     function getBookmark() {
       try {
         const raw = localStorage.getItem(BOOKMARK_KEY);
-        if (!raw) return null;
-        return JSON.parse(raw);
-      } catch (e) {
-        return null;
-      }
+        return raw ? JSON.parse(raw) : null;
+      } catch (e) { return null; }
     }
-
     function updateBookmarkDisplay() {
       const bm = getBookmark();
       if (!bm) {
         bookmarkDisplay.textContent = "None saved yet";
       } else {
-        bookmarkDisplay.innerHTML = `
-          <span class="badge">Week ${bm.week}</span>
-          <span class="badge">Day ${bm.day}</span>
-        `;
+        bookmarkDisplay.innerHTML = `<span class="badge">Week ${bm.week}</span><span class="badge">Day ${bm.day}</span>`;
       }
     }
 
-    function gotoBookmark() {
-      const bm = getBookmark();
-      if (!bm) return;
-      if (!program[bm.week] || !program[bm.week][bm.day]) return;
-      weekSelect.value = String(bm.week);
-      daySelect.value = String(bm.day);
-      renderWorkout();
+    // -------------------------
+    // HELPERS
+    // -------------------------
+    function roundToNearest5(x) { return Math.round(x / 5) * 5; }
+    function clamp(n, a, b) { return Math.max(a, Math.min(b, n)); }
+
+    // Parse "AUTO" tags
+    // Format: {AUTO:liftId:tmKey:min-max}
+    // Example: "Clean & Jerk · 6×1 @ 60–70% {AUTO:cj:cj:0.60-0.70}"
+    function parseAutoTag(text) {
+      const m = text.match(/\{AUTO:([a-zA-Z0-9_]+):([a-zA-Z0-9_]+):([0-9.]+)-([0-9.]+)\}/);
+      if (!m) return null;
+      return {
+        liftId: m[1],
+        tmKey: m[2],
+        minPct: parseFloat(m[3]),
+        maxPct: parseFloat(m[4]),
+        cleanedText: text.replace(m[0], "").trim()
+      };
+    }
+
+    function getSessionLog(key) {
+      return localStorage.getItem(LOG_PREFIX + key) || "";
+    }
+    function setSessionLog(key, val) {
+      if (!val) localStorage.removeItem(LOG_PREFIX + key);
+      else localStorage.setItem(LOG_PREFIX + key, val);
+    }
+
+    function getLiftHistory(liftId) {
+      try {
+        const raw = localStorage.getItem(LIFT_HISTORY_PREFIX + liftId);
+        return raw ? JSON.parse(raw) : null;
+      } catch (e) { return null; }
+    }
+    function setLiftHistory(liftId, val) {
+      const num = parseFloat(val);
+      if (isNaN(num)) return;
+      localStorage.setItem(LIFT_HISTORY_PREFIX + liftId, JSON.stringify({
+        lastUsed: num,
+        updatedAt: new Date().toISOString()
+      }));
+    }
+
+    function calcSuggested(tmKey, minPct, maxPct) {
+      const tm = trainingMaxes[tmKey];
+      if (!tm || isNaN(tm)) return "";
+      const min = roundToNearest5(tm * minPct);
+      const max = roundToNearest5(tm * maxPct);
+      if (Math.abs(max - min) >= 5) return `Suggested: ${min}–${max} lb`;
+      return `Suggested: ${max} lb`;
+    }
+
+    function nextTimeSuggestion(lastUsed) {
+      if (!lastUsed || isNaN(lastUsed)) return "";
+      // simple default progression: +5 for big lifts, +5 for pulls; you can manually adjust by feel/RPE
+      const nxt = roundToNearest5(lastUsed + 5);
+      return `Next time: ${nxt} lb (if last was smooth)`;
     }
 
     // -------------------------
-    // RENDER LOGIC
+    // PROGRAM GENERATOR (12 WEEKS)
     // -------------------------
+    function phaseForWeek(w) {
+      if (w <= 4) return "base";
+      if (w <= 8) return "intensify";
+      if (w <= 10) return "peak";
+      return "taper";
+    }
 
+    // Percent schemes (min-max) for key lifts by phase
+    const schemes = {
+      base: {
+        cj:    [0.60, 0.75],
+        sn:    [0.60, 0.75],
+        cpull: [0.90, 1.00],
+        spull: [0.90, 1.00],
+        bsq:   [0.72, 0.80],
+        fsq:   [0.70, 0.80],
+        bench: [0.70, 0.80],
+        pp:    [0.60, 0.75],
+        ohs:   [0.55, 0.70]
+      },
+      intensify: {
+        cj:    [0.70, 0.85],
+        sn:    [0.70, 0.85],
+        cpull: [0.95, 1.10],
+        spull: [0.95, 1.10],
+        bsq:   [0.78, 0.86],
+        fsq:   [0.75, 0.85],
+        bench: [0.75, 0.85],
+        pp:    [0.65, 0.80],
+        ohs:   [0.60, 0.75]
+      },
+      peak: {
+        cj:    [0.85, 0.92],
+        sn:    [0.85, 0.92],
+        cpull: [1.00, 1.15],
+        spull: [1.00, 1.15],
+        bsq:   [0.82, 0.90],
+        fsq:   [0.80, 0.90],
+        bench: [0.75, 0.82],
+        pp:    [0.60, 0.70],
+        ohs:   [0.55, 0.65]
+      },
+      taper: {
+        cj:    [0.70, 0.80],
+        sn:    [0.70, 0.80],
+        cpull: [0.90, 1.00],
+        spull: [0.90, 1.00],
+        bsq:   [0.65, 0.75],
+        fsq:   [0.65, 0.75],
+        bench: [0.65, 0.75],
+        pp:    [0.55, 0.65],
+        ohs:   [0.50, 0.60]
+      }
+    };
+
+    function repScheme(phase, liftType) {
+      // returns string like "6×1" etc
+      if (phase === "base") {
+        if (liftType === "oly") return "6×1–2 (quality)";
+        if (liftType === "pull") return "3×3";
+        if (liftType === "sq") return "4–5×5";
+        if (liftType === "press") return "4×6";
+      }
+      if (phase === "intensify") {
+        if (liftType === "oly") return "4–5×1–2 (crisp)";
+        if (liftType === "pull") return "3×2–3";
+        if (liftType === "sq") return "4×3–4";
+        if (liftType === "press") return "4×4–6";
+      }
+      if (phase === "peak") {
+        if (liftType === "oly") return "Work to heavy single/double (no misses)";
+        if (liftType === "pull") return "2–3×2 (heavy, fast)";
+        if (liftType === "sq") return "3×2–3";
+        if (liftType === "press") return "3×3–4";
+      }
+      // taper
+      if (liftType === "oly") return "4×1–2 (speed)";
+      if (liftType === "pull") return "2×2 (speed)";
+      if (liftType === "sq") return "2–3×3 (easy)";
+      if (liftType === "press") return "2–3×3–5 (easy)";
+      return "3×3";
+    }
+
+    function makeDay1(w) {
+      const phase = phaseForWeek(w);
+      const isCJWeek = (w % 2 === 1);
+      const s = schemes[phase];
+
+      const olyLine = isCJWeek
+        ? `Clean & Jerk · ${repScheme(phase,"oly")} @ ${Math.round(s.cj[0]*100)}–${Math.round(s.cj[1]*100)}% · RPE ${phase==="peak" ? "7.5–9" : "6–8"} {AUTO:cj:cj:${s.cj[0]}-${s.cj[1]}}`
+        : `Power Snatch · ${repScheme(phase,"oly")} @ ${Math.round(s.sn[0]*100)}–${Math.round(s.sn[1]*100)}% · RPE ${phase==="peak" ? "7.5–9" : "6–8"} {AUTO:sn:sn:${s.sn[0]}-${s.sn[1]}}`;
+
+      const pullLine = isCJWeek
+        ? `Clean Pull · ${repScheme(phase,"pull")} @ ${Math.round(s.cpull[0]*100)}–${Math.round(s.cpull[1]*100)}% of C&J TM · RPE 7–8 {AUTO:cpull:cj:${s.cpull[0]}-${s.cpull[1]}}`
+        : `Snatch Pull · ${repScheme(phase,"pull")} @ ${Math.round(s.spull[0]*100)}–${Math.round(s.spull[1]*100)}% of Snatch TM · RPE 7–8 {AUTO:spull:sn:${s.spull[0]}-${s.spull[1]}}`;
+
+      // Lower hypertrophy volume: scale by phase
+      const lowerVol = (phase === "peak") ? { mainSets: "3×3", accSets: "2–3 sets" } :
+                       (phase === "taper") ? { mainSets: "2–3×3", accSets: "1–2 sets" } :
+                       (phase === "intensify") ? { mainSets: "4×3–4", accSets: "3 sets" } :
+                       { mainSets: "5×5", accSets: "3–4 sets" };
+
+      const squatLine = `Back Squat · ${lowerVol.mainSets} @ ${Math.round(s.bsq[0]*100)}–${Math.round(s.bsq[1]*100)}% · RPE ${phase==="taper" ? "6" : (phase==="peak" ? "7.5–8" : "7–8")} {AUTO:bsq:bsq:${s.bsq[0]}-${s.bsq[1]}}`;
+
+      // Add OHS mobility exposure on snatch weeks (helps your limitation)
+      const ohsLine = isCJWeek
+        ? `Optional: Tall Clean + Front Rack Mobility · 2×3–5 (easy)`
+        : `Overhead Squat (position) · 3×3 @ ${Math.round(s.ohs[0]*100)}–${Math.round(s.ohs[1]*100)}% · slow + 2s pause {AUTO:ohs:sn:${s.ohs[0]}-${s.ohs[1]}}`;
+
+      return {
+        title: `Week ${w} Day 1 – ${isCJWeek ? "C&J" : "Snatch"} + Lower Hypertrophy`,
+        focus: `Oly quality + lower-body volume (quads/glutes/hamstrings)`,
+        blocks: [
+          { name: "Olympic Lift", items: [olyLine, pullLine, ohsLine] },
+          { name: "Lower Hypertrophy", items: [
+            squatLine,
+            `RDL · ${lowerVol.accSets} × 6–10 @ RPE 7–8 (hamstrings/glutes)`,
+            `Split Squat or Hack Squat · ${lowerVol.accSets} × 8–12 @ RPE 8`,
+            `Leg Curl · ${lowerVol.accSets} × 10–15 @ RPE 8`,
+            `Calves (standing or seated) · ${lowerVol.accSets} × 10–15`
+          ]},
+          { name: "Core", items: [
+            `Toes-to-Bar or Hanging Knee Raises · ${phase==="taper" ? "2×8–10" : "3×8–12"} @ controlled tempo`
+          ]}
+        ]
+      };
+    }
+
+    function makeDay2(w) {
+      const phase = phaseForWeek(w);
+      const s = schemes[phase];
+
+      // Push volume scaled by phase
+      const pushVol = (phase === "peak") ? { main: "3×3–4", acc: "2–3 sets" } :
+                      (phase === "taper") ? { main: "2–3×3–5", acc: "1–2 sets" } :
+                      (phase === "intensify") ? { main: "4×4–6", acc: "3 sets" } :
+                      { main: "4×6", acc: "3–4 sets" };
+
+      const benchLine = `Bench Press · ${pushVol.main} @ ${Math.round(s.bench[0]*100)}–${Math.round(s.bench[1]*100)}% · RPE ${phase==="taper" ? "6–7" : "7–8"} {AUTO:bench:bench:${s.bench[0]}-${s.bench[1]}}`;
+
+      // Push press stays optional if collarbone or shoulder is irritated
+      const ppLine = `Push Press (if pain-free) · ${phase==="peak" ? "3×2–3" : (phase==="taper" ? "2×3" : "4×3")} @ ${Math.round(s.pp[0]*100)}–${Math.round(s.pp[1]*100)}% · RPE 6–8 {AUTO:pp:pp:${s.pp[0]}-${s.pp[1]}}`;
+
+      return {
+        title: `Week ${w} Day 2 – Upper Push Hypertrophy + Sled`,
+        focus: `Chest/shoulders/triceps volume + conditioning (no CNS crush)`,
+        blocks: [
+          { name: "Push (Main)", items: [
+            benchLine,
+            ppLine,
+            `If shoulder/collarbone irritated → Landmine Press 4×8 @ RPE 6–7 (instead of Push Press)`
+          ]},
+          { name: "Push Hypertrophy", items: [
+            `Incline DB Press · ${pushVol.acc} × 8–12 @ RPE 8`,
+            `Dips or Push-ups · ${pushVol.acc} × 8–12 @ RPE 7–8`,
+            `Lateral Raise · ${pushVol.acc} × 12–20 @ RPE 8 (keep shoulders healthy)`,
+            `Triceps (rope pressdown / skullcrusher) · ${pushVol.acc} × 10–15 @ RPE 8`
+          ]},
+          { name: "Sled Push", items: [
+            `Sled Push · ${phase==="taper" ? "3–4" : "4"} × 20–40 m @ RPE ${phase==="peak" ? "7–8" : "8"} (powerful drive, not all-out sprint)`,
+            `Rest 60–120s; keep form crisp (short steps, heel “floating”, ribs stacked)`
+          ]},
+          { name: "Shoulder Health", items: [
+            `Face Pulls · ${phase==="taper" ? "2×12" : "3×12–15"}`,
+            `Serratus Wall Slides · ${phase==="taper" ? "1–2×10" : "2×10"}`
+          ]}
+        ]
+      };
+    }
+
+    function makeDay3(w) {
+      const phase = phaseForWeek(w);
+      const s = schemes[phase];
+
+      const isCJWeek = (w % 2 === 1);
+
+      const lowerVol = (phase === "peak") ? { mainSets: "3×2–3", accSets: "2–3 sets" } :
+                       (phase === "taper") ? { mainSets: "2–3×3", accSets: "1–2 sets" } :
+                       (phase === "intensify") ? { mainSets: "4×3–4", accSets: "3 sets" } :
+                       { mainSets: "5×3–5", accSets: "3–4 sets" };
+
+      const fsqLine = `Front Squat · ${lowerVol.mainSets} @ ${Math.round(s.fsq[0]*100)}–${Math.round(s.fsq[1]*100)}% · RPE ${phase==="taper" ? "6" : "7–8"} {AUTO:fsq:fsq:${s.fsq[0]}-${s.fsq[1]}}`;
+
+      // Add a pause variant more on snatch weeks (helps bottom position)
+      const pauseVariant = (!isCJWeek)
+        ? `Pause Front Squat · ${phase==="taper" ? "2×2–3" : "3–4×3"} (2–3s pause) @ RPE 6–7`
+        : `Tempo Eccentric Squat (optional) · 2×3 @ slow 3s down (light)`;
+
+      return {
+        title: `Week ${w} Day 3 – Lower Hypertrophy + Sled Pull`,
+        focus: `Front squat strength + posterior chain + knee/hip friendly conditioning`,
+        blocks: [
+          { name: "Strength (Main)", items: [
+            fsqLine,
+            pauseVariant
+          ]},
+          { name: "Lower Hypertrophy", items: [
+            `Hip Thrust · ${lowerVol.accSets} × 6–12 @ RPE 8 (glutes)`,
+            `Hamstring Curl · ${lowerVol.accSets} × 10–15 @ RPE 8`,
+            `Leg Press or Step-Ups · ${lowerVol.accSets} × 10–15 @ RPE 8`,
+            `Back Extension / Reverse Hyper · ${lowerVol.accSets} × 12–15 (flush low back)`
+          ]},
+          { name: "Sled Pulls", items: [
+            `Backward Sled Drag · ${phase==="taper" ? "3" : "4"} × 20–30 m @ RPE ${phase==="peak" ? "7–8" : "7–8"} (steady pump, not death)`,
+            `Optional: Forward sled pull · 2×20 m light (hip flexor friendly)`
+          ]},
+          { name: "Core / Adductors", items: [
+            `Copenhagen Plank · ${phase==="taper" ? "2×15–20s/side" : "3×20–30s/side"}`,
+            `Pallof Press · ${phase==="taper" ? "2×10/side" : "3×10–12/side"}`
+          ]}
+        ]
+      };
+    }
+
+    function makeDay4(w) {
+      const phase = phaseForWeek(w);
+      const isCJWeek = (w % 2 === 1);
+
+      const pullVol = (phase === "peak") ? { main: "3 sets", acc: "2–3 sets" } :
+                      (phase === "taper") ? { main: "2–3 sets", acc: "1–2 sets" } :
+                      (phase === "intensify") ? { main: "4 sets", acc: "3 sets" } :
+                      { main: "4 sets", acc: "3–4 sets" };
+
+      // You explicitly want Hang Clean 4×2; keep it every week as technique/speed
+      const hangOly = isCJWeek
+        ? `Hang Clean · 4×2 @ 40–60% (speed under) · RPE 4–6 {AUTO:hang_clean:cj:0.40-0.60}`
+        : `Hang Power Snatch · 4×2 @ 40–60% (speed under) · RPE 4–6 {AUTO:hang_sn:sn:0.40-0.60}`;
+
+      const pops = isCJWeek
+        ? `Clean Pull Pops · 2×5 (light, timing only)`
+        : `Snatch High-Pull Pops · 2×5 (light, timing only)`;
+
+      return {
+        title: `Week ${w} Day 4 – ${isCJWeek ? "Clean" : "Snatch"} Technique + Pull Hypertrophy`,
+        focus: `Oly skill + back/lats/rear delts/biceps volume`,
+        blocks: [
+          { name: "Technique", items: [hangOly, pops] },
+          { name: "Pull Hypertrophy", items: [
+            `Chest-Supported Row · ${pullVol.main} × 10–12 @ RPE 7–8`,
+            `Lat Pulldown / Assisted Pull-Up · ${pullVol.main} × 8–12 @ RPE 7–8`,
+            `Horizontal Row (cable/machine/barbell) · ${pullVol.acc} × 8–12 @ RPE 7–8`,
+            `Rear Delt Fly · ${pullVol.acc} × 12–20 @ RPE 7–8`,
+            `Biceps (EZ/DB/Incline curl) · ${pullVol.acc} × 10–15 @ RPE 7–8`,
+            `Optional: Hammer curls · ${phase==="taper" ? "1×12–15" : "2×12–15"}`
+          ]},
+          { name: "Core", items: [
+            `Hollow Hold / Dead Bug · ${phase==="taper" ? "2×20–30s" : "3×20–40s"} (no low-back flare)`
+          ]}
+        ]
+      };
+    }
+
+    function makeWeek(w) {
+      return {
+        1: makeDay1(w),
+        2: makeDay2(w),
+        3: makeDay3(w),
+        4: makeDay4(w)
+      };
+    }
+
+    const program = {};
+    for (let w = 1; w <= 12; w++) program[w] = makeWeek(w);
+
+    // -------------------------
+    // UI INIT (Week selector)
+    // -------------------------
     const weekSelect = document.getElementById("weekSelect");
     const daySelect = document.getElementById("daySelect");
     const workoutCard = document.getElementById("workoutCard");
 
-    const prevDayBtn = document.getElementById("prevDayBtn");
-    const nextDayBtn = document.getElementById("nextDayBtn");
+    function weekLabel(w) {
+      const phase = phaseForWeek(w);
+      const emphasis = (w % 2 === 1) ? "C&J" : "Snatch";
+      const phaseTxt = (phase === "base") ? "Base"
+        : (phase === "intensify") ? "Intensify"
+        : (phase === "peak") ? "Peak"
+        : "Taper";
+      return `${w} (${emphasis} · ${phaseTxt})`;
+    }
 
-    const saveBookmarkBtn = document.getElementById("saveBookmarkBtn");
-    const gotoBookmarkBtn = document.getElementById("gotoBookmarkBtn");
-    const bookmarkDisplay = document.getElementById("bookmarkDisplay");
+    function populateWeekSelect() {
+      weekSelect.innerHTML = "";
+      for (let w = 1; w <= 12; w++) {
+        const opt = document.createElement("option");
+        opt.value = String(w);
+        opt.textContent = weekLabel(w);
+        weekSelect.appendChild(opt);
+      }
+    }
 
+    // -------------------------
+    // RENDER
+    // -------------------------
     function renderWorkout() {
       const week = parseInt(weekSelect.value, 10);
       const day = parseInt(daySelect.value, 10);
 
-      const weekData = program[week];
-      if (!weekData || !weekData[day]) {
-        workoutCard.innerHTML = "<div>Workout not defined for this day.</div>";
+      const data = program?.[week]?.[day];
+      if (!data) {
+        workoutCard.innerHTML = "<div>Workout not found.</div>";
         return;
       }
 
-      const data = weekData[day];
       let html = "";
-
       html += `<div class="title">${data.title}</div>`;
-      html += `<div class="meta-row">`;
-      html += `<div class="focus">${data.focus}</div>`;
-      html += `<div class="week-tag">Week ${week} · Day ${day}</div>`;
-      html += `</div>`;
+      html += `<div class="meta-row"><div class="focus">${data.focus}</div><div class="week-tag">Week ${week} · Day ${day}</div></div>`;
 
       data.blocks.forEach((block, bIndex) => {
         html += `<div class="block">`;
         html += `<div class="block-name">${block.name}</div>`;
         html += `<ul>`;
-        block.items.forEach((item, iIndex) => {
-          const key = `${week}-${day}-${bIndex}-${iIndex}`;
-          const suggestion = getSuggestionFor(key);
-          const logKey = key; // same structure for storage
-          const savedVal = getLog(logKey);
 
-          if (suggestion) {
-            html += `<li>`;
-            html += `<div class="exercise-line">`;
-            html += `<span class="exercise-text">${item}</span>`;
-            html += `<span class="calc-text">${suggestion}</span>`;
-            html += `</div>`;
-            html += `<div class="exercise-input-row">`;
-            html += `Used (lb): <input type="number" inputmode="decimal" value="${savedVal}" onchange="saveLog('${logKey}', this.value)" />`;
-            html += `</div>`;
-            html += `</li>`;
-          } else {
+        block.items.forEach((item, iIndex) => {
+          const auto = parseAutoTag(item);
+          const key = `${week}-${day}-${bIndex}-${iIndex}`;
+
+          if (!auto) {
             html += `<li>${item}</li>`;
+            return;
           }
+
+          const suggested = calcSuggested(auto.tmKey, auto.minPct, auto.maxPct);
+
+          const savedVal = getSessionLog(key);
+          const hist = getLiftHistory(auto.liftId);
+          const lastUsed = hist?.lastUsed;
+
+          const lastTxt = (lastUsed && !isNaN(lastUsed)) ? `Last used: ${lastUsed} lb` : `Last used: —`;
+          const nextTxt = (lastUsed && !isNaN(lastUsed)) ? nextTimeSuggestion(lastUsed) : "";
+
+          html += `<li>`;
+          html += `<div class="exercise-line">`;
+          html += `<span class="exercise-text">${auto.cleanedText}</span>`;
+          html += `<span class="calc-text">${suggested}</span>`;
+          html += `</div>`;
+          html += `<div class="exercise-input-row">`;
+          html += `Used (lb): <input type="number" inputmode="decimal" value="${savedVal}" data-key="${key}" data-lift="${auto.liftId}" />`;
+          html += `<span class="mini">${lastTxt}${nextTxt ? " · " + nextTxt : ""}</span>`;
+          html += `</div>`;
+          html += `</li>`;
         });
+
         html += `</ul></div>`;
       });
 
       workoutCard.innerHTML = html;
+
+      // Bind inputs (autosave)
+      workoutCard.querySelectorAll("input[data-key]").forEach(inp => {
+        inp.addEventListener("input", () => {
+          const k = inp.getAttribute("data-key");
+          const liftId = inp.getAttribute("data-lift");
+          const val = inp.value;
+
+          setSessionLog(k, val);
+          if (liftId) setLiftHistory(liftId, val);
+          // re-render so "Last used / Next time" updates immediately
+          renderWorkout();
+        });
+      });
     }
 
+    // -------------------------
+    // NAV
+    // -------------------------
     function changeDay(delta) {
       let week = parseInt(weekSelect.value, 10);
       let day = parseInt(daySelect.value, 10);
 
       day += delta;
 
-      if (day < 1) {
-        if (week > 1) {
-          week -= 1;
-          day = 4;
-        } else {
-          day = 1;
-        }
-      } else if (day > 4) {
-        if (week < 12) {
-          week += 1;
-          day = 1;
-        } else {
-          day = 4;
-        }
-      }
+      if (day < 1) { week = Math.max(1, week - 1); day = 4; }
+      if (day > 4) { week = Math.min(12, week + 1); day = 1; }
 
       weekSelect.value = String(week);
       daySelect.value = String(day);
       renderWorkout();
     }
 
-    // EVENT LISTENERS
+    document.getElementById("prevDayBtn").addEventListener("click", () => changeDay(-1));
+    document.getElementById("nextDayBtn").addEventListener("click", () => changeDay(1));
+
+    // Bookmark buttons
+    document.getElementById("saveBookmarkBtn").addEventListener("click", () => {
+      saveBookmark(parseInt(weekSelect.value, 10), parseInt(daySelect.value, 10));
+    });
+    document.getElementById("gotoBookmarkBtn").addEventListener("click", () => {
+      const bm = getBookmark();
+      if (!bm) return;
+      if (!program?.[bm.week]?.[bm.day]) return;
+      weekSelect.value = String(bm.week);
+      daySelect.value = String(bm.day);
+      renderWorkout();
+    });
+
     weekSelect.addEventListener("change", renderWorkout);
     daySelect.addEventListener("change", renderWorkout);
 
-    prevDayBtn.addEventListener("click", () => changeDay(-1));
-    nextDayBtn.addEventListener("click", () => changeDay(1));
-
-    saveBookmarkBtn.addEventListener("click", saveBookmark);
-    gotoBookmarkBtn.addEventListener("click", gotoBookmark);
-
+    // -------------------------
     // INIT
+    // -------------------------
     loadTrainingMaxes();
-    initTrainingMaxInputs();
+    bindTrainingMaxInputs();
+    populateWeekSelect();
     updateBookmarkDisplay();
+
+    // Default start: if bookmark exists, go there; else Week 1 Day 1
+    const bm = getBookmark();
+    if (bm && program?.[bm.week]?.[bm.day]) {
+      weekSelect.value = String(bm.week);
+      daySelect.value = String(bm.day);
+    } else {
+      weekSelect.value = "1";
+      daySelect.value = "1";
+    }
+
     renderWorkout();
   </script>
 </body>
